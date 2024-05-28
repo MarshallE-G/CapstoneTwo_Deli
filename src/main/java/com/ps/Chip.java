@@ -12,8 +12,23 @@ public class Chip extends Product{
         this.chipType = chipType;
     }
     
-    
     // Override calcPrice()
     
+    @Override
+    public double calcPrice() {
+        return 0;
+    }
+    
+    
     // Getters and Setters
+    
+    public String getChipType() {
+        return chipType;
+    }
+    
+    public void setChipType(String chipType) {
+        this.chipType = chipType;
+    }
+    
+    
 }
