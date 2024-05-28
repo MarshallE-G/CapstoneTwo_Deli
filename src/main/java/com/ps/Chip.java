@@ -5,6 +5,11 @@ Represents a bag of "chips"
  */
 
 public class Chip extends Product{
-    // • Add Chips - select chip type
-
+    // chipType : String
+    
+    // Constructor
+    
+    // Override calcPrice()
+    
+    // Getters and Setters
 }

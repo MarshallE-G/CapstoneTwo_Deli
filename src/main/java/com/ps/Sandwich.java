@@ -5,14 +5,20 @@ Represents a "sandwich"
  */
 
 public class Sandwich extends Product{
-    // • Add Sandwich - the add sandwich screen will walk the user through
-    //   several options to create the sandwich
-        // - Select your bread:
-        // - Sandwich size:
+        // breadType : String
+        // sandwichSize: String (or int)
         // - Toppings: - the user should be able to add extras of each topping
-            // ■ Meat:
-            // ■ Cheese:
-            // ■ Other toppings:
+            // meat : String
+            // cheese : String
+            // extraMeat : boolean
+            // extraCheese : boolean
+            // ■ Other toppings:      <--------- These are FREE!!!
             // ■ Select sauces:
-        // - Would you like the sandwich toasted?
+        // toasted : boolean
+    
+    // Constructor
+    
+    // Override calcPrice()
+    
+    // Getters and Setters
 }
