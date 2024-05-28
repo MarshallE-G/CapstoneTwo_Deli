@@ -4,19 +4,45 @@ package com.ps;
 Represents a "sandwich"
  */
 
-public class Sandwich extends Product{
-        // breadType : String
-        // sandwichSize: String (or int)
-        // - Toppings: - the user should be able to add extras of each topping
-            // meat : String
-            // cheese : String
-            // extraMeat : boolean
-            // extraCheese : boolean
-            // ■ Other toppings:      <--------- These are FREE!!!
-            // ■ Select sauces:
-        // toasted : boolean
+import java.util.ArrayList;
+
+public class Sandwich extends Product {
+    private String            breadType;
+    private String            sandwichSize;
+    private String            meat;
+    private String            cheese;
+    private boolean           extraMeat;
+    private boolean           extraCheese;
+    private ArrayList<String> additionalToppings; // ■ Other toppings:      <--------- These are FREE!!!
+    private String            sauce;
+    private boolean           toasted;
     
     // Constructor
+    
+    public Sandwich(
+            double price,
+            String breadType,
+            String sandwichSize,
+            String meat,
+            String cheese,
+            boolean extraMeat,
+            boolean extraCheese,
+            ArrayList<String> additionalToppings,
+            String sauce,
+            boolean toasted
+    ) {
+        super(price);
+        this.breadType = breadType;
+        this.sandwichSize = sandwichSize;
+        this.meat = meat;
+        this.cheese = cheese;
+        this.extraMeat = extraMeat;
+        this.extraCheese = extraCheese;
+        this.additionalToppings = additionalToppings;
+        this.sauce = sauce;
+        this.toasted = toasted;
+    }
+    
     
     // Override calcPrice()
     

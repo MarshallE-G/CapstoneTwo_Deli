@@ -4,11 +4,16 @@ package com.ps;
 Represents a "drink"
  */
 
-public class Drink extends Product{
-    // drinkSize : String
-    // flavor : String
+public class Drink extends Product {
+    private String drinkSize;
+    private String flavor;
     
-    // Constructor
+    public Drink(double price, String drinkSize, String flavor) {
+        super(price);
+        this.drinkSize = drinkSize;
+        this.flavor = flavor;
+    }
+    
     
     // Override calcPrice()
     

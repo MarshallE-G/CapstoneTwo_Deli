@@ -5,9 +5,13 @@ Represents a bag of "chips"
  */
 
 public class Chip extends Product{
-    // chipType : String
+    private String chipType;
     
-    // Constructor
+    public Chip(double price, String chipType) {
+        super(price);
+        this.chipType = chipType;
+    }
+    
     
     // Override calcPrice()
     

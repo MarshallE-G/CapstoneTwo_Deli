@@ -5,11 +5,20 @@ An abstract class representing the individual menu items from the deli (e.g. San
  */
 
 public abstract class Product{
-    // price : double
+    private double price;
     
-    // Constructor
+    public Product(double price) {
+        this.price = price;
+    }
     
-    // abstract calcPrice() : double
+    public abstract double calcPrice();
     
-    // Getters and Setters
+    
+    public double getPrice() {
+        return price;
+    }
+    
+    public void setPrice(double price) {
+        this.price = price;
+    }
 }
