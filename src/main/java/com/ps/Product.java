@@ -5,5 +5,11 @@ An abstract class representing the individual menu items from the deli (e.g. San
  */
 
 public abstract class Product{
-
+    // price : double
+    
+    // Constructor
+    
+    // abstract calcPrice() : double
+    
+    // Getters and Setters
 }

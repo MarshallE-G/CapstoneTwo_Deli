@@ -5,7 +5,12 @@ This class represents a single "order" from the deli. It is used to store/contai
  */
 
 public class Order{
-    // Order details
-        // products
-        // price/charge
+    // products : ArrayList<Product>
+    
+    // Constructor
+    
+    // add() : void (adds products to order)
+    // checkout() : void (calculates order price and displays order details)
+    
+    // Getters and Setters
 }
