@@ -11,6 +11,8 @@ public class Sandwich extends Product {
     private String            sandwichSize;
     private String            meat;
     private String            cheese;
+    private boolean hasMeat;
+    private boolean hasCheese;
     private boolean           extraMeat;
     private boolean           extraCheese;
     private ArrayList<String> additionalToppings; // ■ Other toppings:      <--------- These are FREE!!!
@@ -25,6 +27,8 @@ public class Sandwich extends Product {
             String sandwichSize,
             String meat,
             String cheese,
+            boolean hasMeat,
+            boolean hasCheese,
             boolean extraMeat,
             boolean extraCheese,
             ArrayList<String> additionalToppings,
@@ -36,6 +40,8 @@ public class Sandwich extends Product {
         this.sandwichSize = sandwichSize;
         this.meat = meat;
         this.cheese = cheese;
+        this.hasMeat = hasMeat;
+        this.hasCheese = hasCheese;
         this.extraMeat = extraMeat;
         this.extraCheese = extraCheese;
         this.additionalToppings = additionalToppings;
@@ -48,7 +54,62 @@ public class Sandwich extends Product {
     
     @Override
     public double calcPrice() {
-        return 0;
+        double price = 0;
+        
+        switch (this.sandwichSize) {
+            case "4\"":
+                price = 5.50;
+                if (this.hasMeat) {
+                    price += 1.00;
+                    if (this.extraMeat) {
+                        price += .50;
+                    }
+                }
+                
+                if (this.hasCheese) {
+                    price += .75;
+                    if (this.extraCheese) {
+                        price += .30;
+                    }
+                }
+                break;
+                
+            case "8\"":
+                price = 7.00;
+                if (this.hasMeat) {
+                    price += 2.00;
+                    if (this.extraMeat) {
+                        price += 1.00;
+                    }
+                }
+    
+                if (this.hasCheese) {
+                    price += 1.50;
+                    if (this.extraCheese) {
+                        price += .60;
+                    }
+                }
+                break;
+                
+            case "12\"":
+                price = 8.50;
+                if (this.hasMeat) {
+                    price += 3.00;
+                    if (this.extraMeat) {
+                        price += 1.50;
+                    }
+                }
+    
+                if (this.hasCheese) {
+                    price += 2.25;
+                    if (this.extraCheese) {
+                        price += .90;
+                    }
+                }
+                break;
+            default:
+        }
+        return price;
     }
     
     
@@ -82,6 +143,22 @@ public class Sandwich extends Product {
     
     public void setCheese(String cheese) {
         this.cheese = cheese;
+    }
+    
+    public boolean hasMeat() {
+        return hasMeat;
+    }
+    
+    public void setHasMeat(boolean hasMeat) {
+        this.hasMeat = hasMeat;
+    }
+    
+    public boolean hasCheese() {
+        return hasCheese;
+    }
+    
+    public void setHasCheese(boolean hasCheese) {
+        this.hasCheese = hasCheese;
     }
     
     public boolean hasExtraMeat() {
@@ -122,5 +199,22 @@ public class Sandwich extends Product {
     
     public void setToasted(boolean toasted) {
         this.toasted = toasted;
+    }
+    
+    @Override
+    public String toString() {
+        return "Sandwich{" +
+                "breadType='" + breadType + '\'' +
+                ", sandwichSize='" + sandwichSize + '\'' +
+                ", meat='" + meat + '\'' +
+                ", cheese='" + cheese + '\'' +
+                ", hasMeat=" + hasMeat +
+                ", hasCheese=" + hasCheese +
+                ", extraMeat=" + extraMeat +
+                ", extraCheese=" + extraCheese +
+                ", additionalToppings=" + additionalToppings +
+                ", sauce='" + sauce + '\'' +
+                ", toasted=" + toasted +
+                "}\n";
     }
 }
