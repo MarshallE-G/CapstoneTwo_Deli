@@ -37,13 +37,9 @@ public class UserInterface {
                         // • Order Screen - All entries should show the newest entries first
                         System.out.println("\nOrder Menu\n");
                         
-                            // 1) Add Sandwich
                         System.out.println("1) Add Sandwich");
-                            // 2) Add Drink
                         System.out.println("2) Add Drink");
-                            // 3) Add Chips
                         System.out.println("3) Add Chips");
-                            // 4) Checkout
                         System.out.println("4) Checkout");
                             // 0) Cancel Order - delete the order and go back to the home page
                         System.out.println("0) Cancel Order");
@@ -58,9 +54,36 @@ public class UserInterface {
                                 System.out.println("\n~You chose the Add Sandwich option~\n");
                                 
                                     // - Select your bread:
-                                System.out.println("Select your bread:");
-                                    // - Sandwich size:
-                                System.out.println("Select a sandwich size:");
+                                System.out.println(
+                                        "Select your bread:" +
+                                                "\t1) white" +
+                                                "\t2) wheat" +
+                                                "\t3) rye" +
+                                                "\t4) wrap"
+                                );
+    
+                                System.out.println("Enter your selection here:");
+                                int breadSelection = scanner.nextInt();
+                                
+                                if (breadSelection == 1) {
+                                    String breadType = "white";
+                                } else if (breadSelection == 2) {
+                                    String breadType = "wheat";
+                                } else if (breadSelection == 3) {
+                                    String breadType = "rye";
+                                } else if (breadSelection == 4) {
+                                    String breadType = "wrap";
+                                } else {
+                                    System.out.println("That bread is not available at our store.");
+                                }
+    
+                                // - Sandwich size:
+                                System.out.println(
+                                        "Select a sandwich size:" +
+                                                "\t1) 4\"" +
+                                                "\t2) 8\"" +
+                                                "\t3) 12\""
+                                );
                                     // - Toppings: - the user should be able to add extras of each topping
                                         // ■ Meat:
                                             // display list of available meats
@@ -123,6 +146,7 @@ public class UserInterface {
                                 System.out.println("0) Cancel");
                                 
                                         // if cancel...
+                                            // remove order
                                 System.out.println("~~You have canceled the order!~~");
 //                                orderMenuCommand = 0;
                             case 0:
@@ -154,12 +178,32 @@ public class UserInterface {
     
     }
     
-    // processAddSandwichRequest()
+    public static void processAddSandwichRequest() {
     
-    // processAddDrinkRequest()
+    }
     
-    // processAddChipsRequest()
+    public static void processAddDrinkRequest() {
     
-    // processCheckoutRequest()
+    }
+    
+    public static void processAddChipsRequest() {
+    
+    }
+    
+//    public static void processCheckoutRequest(int orderMenuCommand) {
+//        System.out.println("\n~You chose the Checkout option~\n");
+//        // • Checkout - display the order details and the price
+//
+//            // - Confirm - create the receipt file and go back to the home screen
+//        System.out.println("1) Confirm");
+//
+//            // - Cancel - delete order and go back to the home screen
+//        System.out.println("0) Cancel");
+//
+//                // if cancel...
+//                    // remove order
+//        System.out.println("~~You have canceled the order!~~");
+//        orderMenuCommand = 0;
+//    }
     
 }
