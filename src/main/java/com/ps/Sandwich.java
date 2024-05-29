@@ -19,8 +19,6 @@ public class Sandwich extends Product {
     private String            sauce;
     private boolean           toasted;
     
-    // Constructor
-    
     public Sandwich(
             double price,
             String breadType,
@@ -48,9 +46,6 @@ public class Sandwich extends Product {
         this.sauce = sauce;
         this.toasted = toasted;
     }
-    
-    
-    // Override calcPrice()
     
     @Override
     public double calcPrice() {
@@ -110,6 +105,10 @@ public class Sandwich extends Product {
             default:
         }
         return price;
+    }
+    
+    public void addAdditionalTopping(String additionalTopping) {
+        this.additionalToppings.add(additionalTopping);
     }
     
     
@@ -201,7 +200,6 @@ public class Sandwich extends Product {
         this.toasted = toasted;
     }
     
-    // DON'T rely on this for Sandwich because of the additionalToppings ArrayList!! Format it manually (not in toString()).
     @Override
     public String toString() {
         String additionalToppingsStr = "";
