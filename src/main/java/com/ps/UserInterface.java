@@ -58,6 +58,16 @@ public class UserInterface {
                                 };
                                 String[] saucesArr = {"mayo", "mustard", "ketchup", "ranch", "thousand islands", "vinaigrette"};
                                 String[] sidesArr = {"au jus", "sauce"};
+                                boolean hasMeat = false;
+                                boolean hasCheese = false;
+                                boolean hasOtherToppings = false;
+                                boolean hasSauces = false;
+                                boolean hasSides = false;
+                                boolean extraMeat = false;
+                                boolean extraCheese = false;
+                                boolean extraToppings = false;
+                                boolean extraSauces = false;
+                                boolean extraSides = false;
                                 
                                 /* • Add Sandwich - the add sandwich screen will walk the user through
                                    several options to create the sandwich*/
@@ -91,7 +101,7 @@ public class UserInterface {
                                     break;
                                 }
                                 
-                                    // - Toppings: - the user should be able to add extras of each topping
+                                System.out.println("Next, we have your toppings!\n");
                                         // ■ Meat:
                                             // display list of available meats
                                 System.out.println("Select a meat:");
@@ -102,15 +112,26 @@ public class UserInterface {
                                 
                                 String meat = sandwichOptionSelection(meatsArr, meatSelection);
 
-                                if (meat.equals("")) {
+                                if (!meat.equals("") && !meat.equalsIgnoreCase("no meat")) {
+                                    System.out.println("You selected: " + meat);
+                                    hasMeat = true;
+                                } else if (meat.equals("")) {
                                     System.out.println("This meat is not available.");
                                     break;
                                 }
-                                
-                                
-                                
-                                            // if there's meat...
-                                System.out.println("Would you like extra meat? (Y/N)");
+    
+                                // if there's meat...
+                                if (hasMeat) {
+                                    System.out.println("Would you like extra meat? (Type 1 for \"Yes\" / Type 0 for \"No\")");
+                                    int extraToppingChoice = scanner.nextInt();
+                                    if (extraToppingChoice == 1) {
+                                        extraMeat = true;
+                                    } else if (extraToppingChoice == 0) {
+                                        extraMeat = false;
+                                    } else {
+                                        System.out.println("ERROR: Must type 1 or 0!");
+                                    }
+                                }
                                 
                                         // ■ Cheese:
                                             // display list of available cheeses
@@ -230,6 +251,7 @@ public class UserInterface {
         for (int i = 0; i < options.length; i++) {
             System.out.println("\t" + (i+1) + ") " + options[i]);
         }
+        System.out.println();
     }
     
     public static String sandwichOptionSelection(String[] options, int selection) {
@@ -248,6 +270,32 @@ public class UserInterface {
     
     public static void processAddSandwichRequest() {
     
+    }
+    
+    public static boolean processExtraToppingInquiry(boolean hasOption, String optionType) {
+        boolean extraOption = false;
+    
+        int extraOptionChoice = 0;
+        do {
+            if (hasOption) {
+                System.out.println("Would you like extra " + optionType + "? (Type 1 for \"Yes\" / Type 0 for \"No\")");
+                extraOptionChoice = scanner.nextInt();
+        
+                switch (extraOptionChoice) {
+                    case 1:
+                        extraOption = true;
+                        break;
+                    case 0:
+                        extraOption = false;
+                        break;
+                    default:
+                        System.out.println("ERROR: Must type 1 or 0!");
+                        break;
+                }
+            }
+        } while (extraOptionChoice != 1 && extraOptionChoice != 0);
+        
+        return extraOption;
     }
     
     public static void processAddDrinkRequest() {
