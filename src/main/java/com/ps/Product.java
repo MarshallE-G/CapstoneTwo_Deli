@@ -7,8 +7,8 @@ An abstract class representing the individual menu items from the deli (e.g. San
 public abstract class Product implements Chargeable{
     private double price;
     
-    public Product(double price) {
-        this.price = price;
+    public Product() {
+        this.price = 0;
     }
     
     @Override

@@ -17,12 +17,18 @@ public class Sandwich extends Product {
     private boolean           extraMeat;
     private boolean           extraCheese;
     private ArrayList<String> additionalToppings; // ■ Other toppings:      <--------- These are FREE!!!
+    private boolean           hasOtherToppings;
+
+    private boolean           extraToppings;
     private ArrayList<String> sauces;
+    private boolean           hasSauces;
+    private boolean           extraSauces;
     private ArrayList<String> sides;
+    private boolean           hasSides;
+    private boolean           extraSides;
     private boolean           toasted;
     
     public Sandwich(
-            double price,
             String breadType,
             String sandwichSize,
             String meat,
@@ -32,11 +38,16 @@ public class Sandwich extends Product {
             boolean extraMeat,
             boolean extraCheese,
             ArrayList<String> additionalToppings,
+            boolean hasOtherToppings,
+            boolean extraToppings,
             ArrayList<String> sauces,
+            boolean hasSauces,
+            boolean extraSauces,
             ArrayList<String> sides,
-            boolean toasted
-    ) {
-        super(price);
+            boolean hasSides,
+            boolean extraSides,
+            boolean toasted) {
+        super();
         this.breadType = breadType;
         this.sandwichSize = sandwichSize;
         this.meat = meat;
@@ -46,8 +57,14 @@ public class Sandwich extends Product {
         this.extraMeat = extraMeat;
         this.extraCheese = extraCheese;
         this.additionalToppings = additionalToppings;
+        this.hasOtherToppings = hasOtherToppings;
+        this.extraToppings = extraToppings;
         this.sauces = sauces;
+        this.hasSauces = hasSauces;
+        this.extraSauces = extraSauces;
         this.sides = sides;
+        this.hasSides = hasSides;
+        this.extraSides = extraSides;
         this.toasted = toasted;
     }
     
@@ -188,6 +205,22 @@ public class Sandwich extends Product {
         this.additionalToppings = additionalToppings;
     }
     
+    public boolean hasOtherToppings() {
+        return hasOtherToppings;
+    }
+    
+    public void setHasOtherToppings(boolean hasOtherToppings) {
+        this.hasOtherToppings = hasOtherToppings;
+    }
+    
+    public boolean hasExtraToppings() {
+        return extraToppings;
+    }
+    
+    public void setExtraToppings(boolean extraToppings) {
+        this.extraToppings = extraToppings;
+    }
+    
     public ArrayList<String> getSauces() {
         return sauces;
     }
@@ -196,12 +229,44 @@ public class Sandwich extends Product {
         this.sauces = sauce;
     }
     
+    public boolean hasSauces() {
+        return hasSauces;
+    }
+    
+    public void setHasSauces(boolean hasSauces) {
+        this.hasSauces = hasSauces;
+    }
+    
+    public boolean hasExtraSauces() {
+        return extraSauces;
+    }
+    
+    public void setExtraSauces(boolean extraSauces) {
+        this.extraSauces = extraSauces;
+    }
+    
     public ArrayList<String> getSides() {
         return sides;
     }
     
     public void setSides(ArrayList<String> sides) {
         this.sides = sides;
+    }
+    
+    public boolean hasSides() {
+        return hasSides;
+    }
+    
+    public void setHasSides(boolean hasSides) {
+        this.hasSides = hasSides;
+    }
+    
+    public boolean hasExtraSides() {
+        return extraSides;
+    }
+    
+    public void setExtraSides(boolean extraSides) {
+        this.extraSides = extraSides;
     }
     
     public boolean isToasted() {
@@ -224,10 +289,10 @@ public class Sandwich extends Product {
     @Override
     public String toString() {
         String additionalToppingsStr = listToString(this.additionalToppings);
-        String saucesStr = ;
-        String sidesStr = ;
-        
+        String saucesStr = listToString(this.sauces);
+        String sidesStr = listToString(this.sides);
         double price = this.calcPrice();
+        
         // Make sure to not add an extra space BEFORE additionalToppingsStr!
         return "Sandwich{" +
                 "breadType='" + breadType + '\'' +
@@ -238,10 +303,17 @@ public class Sandwich extends Product {
                 ", hasCheese=" + hasCheese +
                 ", extraMeat=" + extraMeat +
                 ", extraCheese=" + extraCheese +
-                ", additionalToppings=" + additionalToppingsStr +
-                ", sauce='" + sauce + '\'' +
+                ", additionalToppings='" + additionalToppingsStr + '\'' +
+                ", hasOtherToppings=" + hasOtherToppings +
+                ", extraToppings=" + extraToppings +
+                ", sauces='" + saucesStr + '\'' +
+                ", hasSauces=" + hasSauces +
+                ", extraSauces=" + extraSauces +
+                ", sides='" + sidesStr + '\'' +
+                ", hasSides=" + hasSides +
+                ", extraSides=" + extraSides +
                 ", toasted=" + toasted +
-                "\nprice=" + price +
+                "\nprice= " + price +
                 '}';
     }
 }

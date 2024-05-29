@@ -8,7 +8,7 @@ public class Chip extends Product{
     private String chipType;
     
     public Chip(double price, String chipType) {
-        super(price);
+        super();
         this.chipType = chipType;
     }
     

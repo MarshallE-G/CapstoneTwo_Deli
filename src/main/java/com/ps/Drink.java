@@ -8,8 +8,8 @@ public class Drink extends Product {
     private String drinkSize;
     private String flavor;
     
-    public Drink(double price, String drinkSize, String flavor) {
-        super(price);
+    public Drink(String drinkSize, String flavor) {
+        super();
         this.drinkSize = drinkSize;
         this.flavor = flavor;
     }
