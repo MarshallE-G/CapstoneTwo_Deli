@@ -207,6 +207,7 @@ public class Sandwich extends Product {
             additionalToppingsStr += " " + this.additionalToppings.get(i);
         }
         
+        double price = this.calcPrice();
         // Make sure to not add an extra space BEFORE additionalToppingsStr!
         return "Sandwich{" +
                 "breadType='" + breadType + '\'' +
@@ -220,6 +221,7 @@ public class Sandwich extends Product {
                 ", additionalToppings=" + additionalToppingsStr +
                 ", sauce='" + sauce + '\'' +
                 ", toasted=" + toasted +
+                "\nprice=" + price +
                 '}';
     }
 }

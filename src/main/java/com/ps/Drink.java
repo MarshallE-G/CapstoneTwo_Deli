@@ -53,9 +53,12 @@ public class Drink extends Product {
     
     @Override
     public String toString() {
+        double price = this.calcPrice();
+    
         return "Drink{" +
                 "drinkSize='" + drinkSize + '\'' +
                 ", flavor='" + flavor + '\'' +
+                "\nprice=" + price +
                 '}';
     }
 }

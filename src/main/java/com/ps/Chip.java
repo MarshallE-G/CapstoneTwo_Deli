@@ -28,8 +28,11 @@ public class Chip extends Product{
     
     @Override
     public String toString() {
+        double price = this.calcPrice();
+    
         return "Chip{" +
                 "chipType='" + chipType + '\'' +
+                "\nprice=" + price +
                 '}';
     }
 }
