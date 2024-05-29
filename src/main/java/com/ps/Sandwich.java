@@ -286,6 +286,45 @@ public class Sandwich extends Product {
         return listStr;
     }
     
+    public String createStrBasedOnAddOns() {
+        String additionalToppingsStr = listToString(this.additionalToppings);
+        String saucesStr = listToString(this.sauces);
+        String sidesStr = listToString(this.sides);
+        double price = this.calcPrice();
+        
+        String selectedAddOns = "Sandwich{" +
+                "breadType='" + breadType + '\'' +
+                ", sandwichSize='" + sandwichSize + '\'' +
+                ", meat='" + meat + '\'' +
+                ", cheese='" + cheese + '\'' +
+                ", additionalToppings='" + additionalToppingsStr + '\'' +
+                ", sauces='" + saucesStr + '\'' +
+                ", sides='" + sidesStr + '\'';
+        
+        if (this.extraMeat) {
+            selectedAddOns += ", extraMeat=" + this.extraMeat;
+        }
+        if (this.extraCheese) {
+            selectedAddOns += ", extraCheese=" + this.extraCheese;
+        }
+        if (this.extraToppings) {
+            selectedAddOns += ", extraToppings=" + this.extraToppings;
+        }
+        if (this.extraSauces) {
+            selectedAddOns += ", extraSauces=" + this.extraSauces;
+        }
+        if (this.extraSides) {
+            selectedAddOns += ", extraSides=" + this.extraSides;
+        }
+        
+        selectedAddOns +=
+                ", toasted=" + toasted +
+                "\nprice= " + price +
+                '}';
+        
+        return selectedAddOns;
+    }
+    
     @Override
     public String toString() {
         String additionalToppingsStr = listToString(this.additionalToppings);
@@ -294,6 +333,8 @@ public class Sandwich extends Product {
         double price = this.calcPrice();
         
         // Make sure to not add an extra space BEFORE additionalToppingsStr!
+//        String sandwichStr = this.createStrBasedOnAddOns();
+//        return sandwichStr;
         return "Sandwich{" +
                 "breadType='" + breadType + '\'' +
                 ", sandwichSize='" + sandwichSize + '\'' +
