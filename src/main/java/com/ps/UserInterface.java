@@ -100,6 +100,11 @@ public class UserInterface {
                                         // ■ Other toppings:
                                             // display list of additional toppings (these are FREE)
                                 
+                                
+                                            // ----> for or do-while loop (for multiple toppings)
+                                            // add all toppings to additionalToppings ArrayList
+                                
+                                
                                         // ■ Select sauces:
                                             // display list of available sauces
                                 
