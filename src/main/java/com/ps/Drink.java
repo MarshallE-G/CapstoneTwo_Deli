@@ -14,15 +14,26 @@ public class Drink extends Product {
         this.flavor = flavor;
     }
     
-    
-    // Override calcPrice()
     @Override
     public double calcPrice() {
-        return 0;
+        double price = 0;
+        
+        switch (this.drinkSize.toLowerCase()) {
+            case "small":
+                price = 2.00;
+                break;
+            case "medium":
+                price = 2.50;
+                break;
+            case "large":
+                price = 3.00;
+                break;
+            default:
+        }
+        
+        return price;
     }
     
-    
-    // Getters and Setters
     
     public String getDrinkSize() {
         return drinkSize;
@@ -38,5 +49,13 @@ public class Drink extends Product {
     
     public void setFlavor(String flavor) {
         this.flavor = flavor;
+    }
+    
+    @Override
+    public String toString() {
+        return "Drink{" +
+                "drinkSize='" + drinkSize + '\'' +
+                ", flavor='" + flavor + '\'' +
+                '}';
     }
 }
