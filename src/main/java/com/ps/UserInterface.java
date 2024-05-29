@@ -84,9 +84,46 @@ public class UserInterface {
                                                 "\t2) 8\"" +
                                                 "\t3) 12\""
                                 );
+    
+                                System.out.println("Enter your selection here:");
+                                int sandwichSizeSelection = scanner.nextInt();
+    
+                                if (breadSelection == 1) {
+                                    String sandwichSize = "4\"";
+                                } else if (breadSelection == 2) {
+                                    String sandwichSize = "8\"";
+                                } else if (breadSelection == 3) {
+                                    String sandwichSize = "12\"";
+                                } else {
+                                    System.out.println("Sandwiches do not come in this size.");
+                                }
+                                
                                     // - Toppings: - the user should be able to add extras of each topping
                                         // ■ Meat:
                                             // display list of available meats
+                                System.out.println(
+                                        "Select a meat:" +
+                                                Meats
+                                                - steak
+                                                - ham
+                                                - salami
+                                                - roast beef
+                                                - chicken
+                                                - bacon
+                                );
+    
+                                System.out.println("Enter your selection here:");
+                                int sandwichSizeSelection = scanner.nextInt();
+    
+                                if (breadSelection == 1) {
+                                    String sandwichSize = "4\"";
+                                } else if (breadSelection == 2) {
+                                    String sandwichSize = "8\"";
+                                } else if (breadSelection == 3) {
+                                    String sandwichSize = "12\"";
+                                } else {
+                                    System.out.println("Sandwiches do not come in this size.");
+                                }
                                 
                                             // if there's meat...
                                 System.out.println("Would you like extra meat? (Y/N)");
@@ -105,8 +142,30 @@ public class UserInterface {
                                             // add all toppings to additionalToppings ArrayList
                                 
                                 
+                                            // if there's additional toppings...
+                                System.out.println("Would you like extra additional toppings? (Y/N)");
+                                
                                         // ■ Select sauces:
                                             // display list of available sauces
+                                
+                                
+                                            // ----> for or do-while loop (for multiple toppings)
+                                            // add all sauces to sauces ArrayList
+    
+    
+                                            // if there's sauce(s)...
+                                System.out.println("Would you like extra sauce? (Y/N)");
+                                
+                                        // ■ Select sides:
+                                            // display list of available sides
+    
+                                
+                                            // ----> for or do-while loop (for multiple sides)
+                                            // add all sides to sides ArrayList
+    
+    
+                                            // if there's sauce(s)...
+                                System.out.println("Would you like extra sauce? (Y/N)");
                                 
                                     // - Would you like the sandwich toasted?
                                 System.out.println("Would you like the sandwich toasted?");
@@ -181,6 +240,24 @@ public class UserInterface {
     
     public static void displayOrderMenu() {
     
+    }
+    
+    public static void displaySandwichOptions(String sandwichOptionType) {
+        if (sandwichOptionType.equalsIgnoreCase("bread type")) {
+        
+        } else if (sandwichOptionType.equalsIgnoreCase("sandwich size")) {
+        
+        } else if (sandwichOptionType.equalsIgnoreCase("meat")) {
+    
+        } else if (sandwichOptionType.equalsIgnoreCase("cheese")) {
+    
+        } else if (sandwichOptionType.equalsIgnoreCase("additional toppings")) {
+    
+        } else if (sandwichOptionType.equalsIgnoreCase("sauces")) {
+    
+        } else if (sandwichOptionType.equalsIgnoreCase("sides")) {
+    
+        }
     }
     
     public static void processAddSandwichRequest() {
