@@ -52,101 +52,62 @@ public class UserInterface {
                                 String[] breadTypesArr = {"white", "wheat", "rye", "wrap"};
                                 String[] sandwichSizesArr = {"4\"", "8\"", "12\""};
                                 String[] meatsArr = {"steak", "ham", "salami", "roast beef", "chicken", "bacon", "no meat"};
-                                String[] cheesesArr;
-                                String[] additionalToppingsArr;
-                                String[] saucesArr;
-                                String[] sidesArr;
+                                String[] cheesesArr = {"american", "provolone", "cheddar", "swiss"};
+                                String[] additionalToppingsArr = {
+                                        "lettuce", "peppers", "onions", "tomatoes", "jalapenos", "cucumbers", "pickles", "guacamole", "mushrooms"
+                                };
+                                String[] saucesArr = {"mayo", "mustard", "ketchup", "ranch", "thousand islands", "vinaigrette"};
+                                String[] sidesArr = {"au jus", "sauce"};
                                 
                                 /* • Add Sandwich - the add sandwich screen will walk the user through
                                    several options to create the sandwich*/
                                 System.out.println("\n~You chose the Add Sandwich option~\n");
                                 
                                     // - Select your bread:
-                                System.out.println(
-                                        "Select your bread:\n" +
-                                                "\t1) white\n" +
-                                                "\t2) wheat\n" +
-                                                "\t3) rye\n" +
-                                                "\t4) wrap"
-                                );
+                                System.out.println("Select your bread:");
+                                displaySandwichOptions(breadTypesArr);
     
                                 System.out.println("Enter your selection here:");
                                 int breadSelection = scanner.nextInt();
                                 
-                                if (breadSelection == 1) {
-                                    String breadType = "white";
-                                } else if (breadSelection == 2) {
-                                    String breadType = "wheat";
-                                } else if (breadSelection == 3) {
-                                    String breadType = "rye";
-                                } else if (breadSelection == 4) {
-                                    String breadType = "wrap";
-                                } else {
-                                    System.out.println("That bread is not available at our store.");
+                                String breadType = sandwichOptionSelection(breadTypesArr, breadSelection);
+                                
+                                if (breadType.equals("")) {
+                                    System.out.println("That bread is not available at our store.\n");
+                                    break;
                                 }
     
-                                // - Sandwich size:
-                                System.out.println(
-                                        "Select a sandwich size:\n" +
-                                                "\t1) 4\"\n" +
-                                                "\t2) 8\"\n" +
-                                                "\t3) 12\""
-                                );
+                                    // - Sandwich size:
+                                System.out.println("Select a sandwich size:");
+                                displaySandwichOptions(sandwichSizesArr);
     
                                 System.out.println("Enter your selection here:");
                                 int sandwichSizeSelection = scanner.nextInt();
-    
-                                if (breadSelection == 1) {
-                                    String sandwichSize = "4\"";
-                                } else if (breadSelection == 2) {
-                                    String sandwichSize = "8\"";
-                                } else if (breadSelection == 3) {
-                                    String sandwichSize = "12\"";
-                                } else {
-                                    System.out.println("Sandwiches do not come in this size.");
+                                
+                                String sandwichSize = sandwichOptionSelection(sandwichSizesArr, sandwichSizeSelection);
+                                
+                                if (sandwichSize.equals("")) {
+                                    System.out.println("Sandwiches do not come in this size.\n");
+                                    break;
                                 }
                                 
                                     // - Toppings: - the user should be able to add extras of each topping
                                         // ■ Meat:
                                             // display list of available meats
-                                System.out.println(
-                                        "Select a meat:\n" +
-                                                "\t1) steak\n" +
-                                                "\t2) ham\n" +
-                                                "\t3) salami\n" +
-                                                "\t4) roast beef\n" +
-                                                "\t5) chicken\n" +
-                                                "\t6) bacon" +
-                                                "\t7) no meat"
-                                );
+                                System.out.println("Select a meat:");
+                                displaySandwichOptions(meatsArr);
     
                                 System.out.println("Enter your selection here:");
                                 int meatSelection = scanner.nextInt();
                                 
-                                sandwichOptionSelection();
-    
-                                String meat = "";
-                                if (meatSelection == 1) {
-                                    meat = "steak";
-                                } else if (meatSelection == 2) {
-                                    meat = "ham";
-                                } else if (meatSelection == 3) {
-                                    meat = "salami";
-                                } else if (meatSelection == 4) {
-                                    meat = "roast beef";
-                                } else if (meatSelection == 5) {
-                                    meat = "chicken";
-                                } else if (meatSelection == 6) {
-                                    meat = "bacon";
-                                } else if (meatSelection == 7) {
-                                    meat = "no meat";
-                                } else {
+                                String meat = sandwichOptionSelection(meatsArr, meatSelection);
+
+                                if (meat.equals("")) {
                                     System.out.println("This meat is not available.");
+                                    break;
                                 }
                                 
-                                if (meat.equals("")) {
-                                    meat = "no meat";
-                                }
+                                
                                 
                                             // if there's meat...
                                 System.out.println("Would you like extra meat? (Y/N)");
@@ -265,36 +226,24 @@ public class UserInterface {
     
     }
     
-    // WIP
-    public static void displaySandwichOptions(String sandwichOptionType) {
-        if (sandwichOptionType.equalsIgnoreCase("bread type")) {
-        
-        } else if (sandwichOptionType.equalsIgnoreCase("sandwich size")) {
-        
-        } else if (sandwichOptionType.equalsIgnoreCase("meat")) {
-    
-        } else if (sandwichOptionType.equalsIgnoreCase("cheese")) {
-    
-        } else if (sandwichOptionType.equalsIgnoreCase("additional toppings")) {
-    
-        } else if (sandwichOptionType.equalsIgnoreCase("sauces")) {
-    
-        } else if (sandwichOptionType.equalsIgnoreCase("sides")) {
-    
+    public static void displaySandwichOptions(String[] options) {
+        for (int i = 0; i < options.length; i++) {
+            System.out.println("\t" + (i+1) + ") " + options[i]);
         }
     }
     
-    public static void sandwichOptionSelection(String[] options, int selection) {
-//        int optionNum = 1;
-        String optionItem;
+    public static String sandwichOptionSelection(String[] options, int selection) {
+        String optionItem = "";
         
-        for (int i = 1; i < (options.length+1); i++) {
+        for (int i = 1; i < options.length; i++) {
             if (selection == 1) {
                 optionItem = options[0];
             } else if (selection == i+1) {
                 optionItem = options[i];
             }
         }
+        
+        return optionItem;
     }
     
     public static void processAddSandwichRequest() {
@@ -327,11 +276,6 @@ public class UserInterface {
     
     /**/
     //  Might add a back button that you can press... at (almost) anytime. Might require a whole Generic Class
-        // Step 1: Will have to create a Generic method that takes (variable = scan.nextInt or scan.nextLine as a parameter...)
-    
-        // Step 1: Create a "checkWhetherIntOrString()" method
-        // Step 2: Overload method with int, THEN String parameter (return type will be a Boolean)
-        // Step 3: Create two boolean variables to hold whatever is returned
-        // Step 4: Create else-if statement to see whether to use
+        // Step 1: Back button will be... 0!!!
     
 }
