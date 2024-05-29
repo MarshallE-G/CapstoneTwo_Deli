@@ -5,6 +5,7 @@ Represents a "sandwich"
  */
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Sandwich extends Product {
     private String            breadType;
@@ -16,7 +17,8 @@ public class Sandwich extends Product {
     private boolean           extraMeat;
     private boolean           extraCheese;
     private ArrayList<String> additionalToppings; // ■ Other toppings:      <--------- These are FREE!!!
-    private String            sauce;
+    private ArrayList<String> sauces;
+    private ArrayList<String> sides;
     private boolean           toasted;
     
     public Sandwich(
@@ -30,7 +32,8 @@ public class Sandwich extends Product {
             boolean extraMeat,
             boolean extraCheese,
             ArrayList<String> additionalToppings,
-            String sauce,
+            ArrayList<String> sauces,
+            ArrayList<String> sides,
             boolean toasted
     ) {
         super(price);
@@ -43,7 +46,8 @@ public class Sandwich extends Product {
         this.extraMeat = extraMeat;
         this.extraCheese = extraCheese;
         this.additionalToppings = additionalToppings;
-        this.sauce = sauce;
+        this.sauces = sauces;
+        this.sides = sides;
         this.toasted = toasted;
     }
     
@@ -184,12 +188,20 @@ public class Sandwich extends Product {
         this.additionalToppings = additionalToppings;
     }
     
-    public String getSauce() {
-        return sauce;
+    public ArrayList<String> getSauces() {
+        return sauces;
     }
     
-    public void setSauce(String sauce) {
-        this.sauce = sauce;
+    public void setSauces(ArrayList<String> sauce) {
+        this.sauces = sauce;
+    }
+    
+    public ArrayList<String> getSides() {
+        return sides;
+    }
+    
+    public void setSides(ArrayList<String> sides) {
+        this.sides = sides;
     }
     
     public boolean isToasted() {
@@ -200,12 +212,20 @@ public class Sandwich extends Product {
         this.toasted = toasted;
     }
     
+    public String listToString(List<String> list) {
+        String listStr = "";
+        for (int i = 0; i < list.size(); i++) {
+            listStr += " " + list.get(i);
+        }
+        
+        return listStr;
+    }
+    
     @Override
     public String toString() {
-        String additionalToppingsStr = "";
-        for (int i = 0; i < this.additionalToppings.size(); i++) {
-            additionalToppingsStr += " " + this.additionalToppings.get(i);
-        }
+        String additionalToppingsStr = listToString(this.additionalToppings);
+        String saucesStr = ;
+        String sidesStr = ;
         
         double price = this.calcPrice();
         // Make sure to not add an extra space BEFORE additionalToppingsStr!
