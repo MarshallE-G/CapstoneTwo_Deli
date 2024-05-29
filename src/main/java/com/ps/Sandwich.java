@@ -220,6 +220,6 @@ public class Sandwich extends Product {
                 ", additionalToppings=" + additionalToppingsStr +
                 ", sauce='" + sauce + '\'' +
                 ", toasted=" + toasted +
-                "}\n";
+                '}';
     }
 }

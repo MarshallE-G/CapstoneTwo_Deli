@@ -12,15 +12,11 @@ public class Chip extends Product{
         this.chipType = chipType;
     }
     
-    // Override calcPrice()
-    
     @Override
     public double calcPrice() {
-        return 0;
+        return 1.50;
     }
     
-    
-    // Getters and Setters
     
     public String getChipType() {
         return chipType;
@@ -30,5 +26,10 @@ public class Chip extends Product{
         this.chipType = chipType;
     }
     
-    
+    @Override
+    public String toString() {
+        return "Chip{" +
+                "chipType='" + chipType + '\'' +
+                '}';
+    }
 }
