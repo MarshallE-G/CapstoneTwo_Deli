@@ -190,7 +190,7 @@ public class UserInterface {
                                     }
                                     System.out.println();
         
-                                    if (!sauces.get(0).equalsIgnoreCase("no sauces")) {
+                                    if (!sauces.get(0).equalsIgnoreCase("no sauce")) {
                                         hasSauces = true;
                                     }
         
@@ -211,7 +211,7 @@ public class UserInterface {
                                     }
                                     System.out.println();
         
-                                    if (!sides.get(0).equalsIgnoreCase("no sides")) {
+                                    if (!sides.get(0).equalsIgnoreCase("no side")) {
                                         hasSides = true;
                                     }
         
@@ -376,7 +376,7 @@ public class UserInterface {
                     } while (orderMenuCommand != 0);
                     break;
                 case 0:
-                    System.out.println("\nExiting...\n");
+                    System.out.println("\nExiting...");
                     break;
                 default:
                     System.out.println("\nERROR: Not a valid option number. Must type 1 or 0!\n");

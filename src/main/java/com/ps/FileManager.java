@@ -17,6 +17,7 @@ public class FileManager {
         String additionalToppingsStr;
         String saucesStr ;
         String sidesStr;
+        double totalPrice = 0;
         
         try {
             BufferedWriter bufWriter = new BufferedWriter(new FileWriter(
@@ -76,8 +77,10 @@ public class FileManager {
                             product.calcPrice()
                             ));
                 }
+                
+                totalPrice += product.calcPrice();
             }
-            
+            bufWriter.write(String.format("\nTotal Price: $%.2f", totalPrice));
             bufWriter.close();
         } catch (IOException e) {
             e.printStackTrace();

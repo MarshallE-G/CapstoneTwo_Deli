@@ -33,7 +33,7 @@ public class Order implements Chargeable{
             System.out.println("\t" + product + "\n");
         }
     
-        System.out.println("Total price: " + orderPrice);
+        System.out.printf("Total price: $%.2f\n", orderPrice);
     }
     
     @Override
