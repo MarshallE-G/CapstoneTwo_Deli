@@ -11,8 +11,8 @@ public class Order implements Chargeable{
     
     // Constructor
     
-    public Order(ArrayList<Product> products) {
-        this.products = products;
+    public Order() {
+        this.products = new ArrayList<>();
     }
     
     // add(product) : void (adds products to order)
