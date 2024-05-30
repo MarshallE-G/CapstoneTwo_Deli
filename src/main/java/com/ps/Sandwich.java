@@ -33,18 +33,13 @@ public class Sandwich extends Product {
             String sandwichSize,
             String meat,
             String cheese,
-            boolean hasMeat,
-            boolean hasCheese,
             boolean extraMeat,
             boolean extraCheese,
             ArrayList<String> additionalToppings,
-            boolean hasOtherToppings,
             boolean extraToppings,
             ArrayList<String> sauces,
-            boolean hasSauces,
             boolean extraSauces,
             ArrayList<String> sides,
-            boolean hasSides,
             boolean extraSides,
             boolean toasted) {
         super();
@@ -52,18 +47,18 @@ public class Sandwich extends Product {
         this.sandwichSize = sandwichSize;
         this.meat = meat;
         this.cheese = cheese;
-        this.hasMeat = hasMeat;
-        this.hasCheese = hasCheese;
+        this.hasMeat = this.has(this.meat);
+        this.hasCheese = this.has(this.cheese);
         this.extraMeat = extraMeat;
         this.extraCheese = extraCheese;
         this.additionalToppings = additionalToppings;
-        this.hasOtherToppings = hasOtherToppings;
+        this.hasOtherToppings = this.has(this.additionalToppings);
         this.extraToppings = extraToppings;
         this.sauces = sauces;
-        this.hasSauces = hasSauces;
+        this.hasSauces = this.has(this.sauces);
         this.extraSauces = extraSauces;
         this.sides = sides;
-        this.hasSides = hasSides;
+        this.hasSides = this.has(this.sides);
         this.extraSides = extraSides;
         this.toasted = toasted;
     }
@@ -128,8 +123,15 @@ public class Sandwich extends Product {
         return price;
     }
     
-    public void addAdditionalTopping(String additionalTopping) {
-        this.additionalToppings.add(additionalTopping);
+    public boolean has(String topping) {
+        return !topping.equalsIgnoreCase("no meat")
+                && !topping.equalsIgnoreCase("no cheese");
+    }
+    
+    public boolean has(ArrayList<String> toppings) {
+        return !toppings.get(0).equalsIgnoreCase("no toppings")
+                && !toppings.get(0).equalsIgnoreCase("no sauce")
+                && !toppings.get(0).equalsIgnoreCase("no side");
     }
     
     
