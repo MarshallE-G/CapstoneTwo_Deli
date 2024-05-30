@@ -55,10 +55,10 @@ public class Drink extends Product {
     public String toString() {
         double price = this.calcPrice();
     
-        return "Drink{" +
-                "drinkSize='" + drinkSize + '\'' +
-                ", flavor='" + flavor + '\'' +
-                "\nprice= $" + price +
-                '}';
+        return "Drink:" +
+                "\n- Size: " + this.drinkSize +
+                "\n- Flavor: " + this.flavor +
+                "\n\nPrice: $" + price +
+                "\n";
     }
 }

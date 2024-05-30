@@ -304,7 +304,7 @@ public class Sandwich extends Product {
         double price = this.calcPrice();
 
         String selectedAddOns =
-                "Sandwich: " +
+                "Sandwich:" +
                 "\n- Bread: " + this.breadType +
                 "\n- Size: " + this.sandwichSize +
                 "\n- Meat: " + this.meat +
