@@ -1,5 +1,7 @@
 package com.ps;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -52,12 +54,16 @@ public class UserInterface {
                                 String[] breadTypesArr = {"white", "wheat", "rye", "wrap"};
                                 String[] sandwichSizesArr = {"4\"", "8\"", "12\""};
                                 String[] meatsArr = {"steak", "ham", "salami", "roast beef", "chicken", "bacon", "no meat"};
-                                String[] cheesesArr = {"american", "provolone", "cheddar", "swiss"};
+                                String[] cheesesArr = {"american", "provolone", "cheddar", "swiss", "no cheese"};
                                 String[] additionalToppingsArr = {
-                                        "lettuce", "peppers", "onions", "tomatoes", "jalapenos", "cucumbers", "pickles", "guacamole", "mushrooms"
+                                        "lettuce", "peppers", "onions", "tomatoes", "jalapenos", "cucumbers", "pickles", "guacamole", "mushrooms", "no toppings"
                                 };
-                                String[] saucesArr = {"mayo", "mustard", "ketchup", "ranch", "thousand islands", "vinaigrette"};
-                                String[] sidesArr = {"au jus", "sauce"};
+                                String[] saucesArr = {"mayo", "mustard", "ketchup", "ranch", "thousand islands", "vinaigrette", "no sauce"};
+                                String[] sidesArr = {"au jus", "sauce", "no side"};
+                                ArrayList<String> additionalToppings = new ArrayList<>();
+                                ArrayList<String> sauces = new ArrayList<>();
+                                ArrayList<String> sides = new ArrayList<>();
+//                                HashMap<String[], String> toppingsTypeHashMap = new HashMap<>();
                                 boolean hasMeat = false;
                                 boolean hasCheese = false;
                                 boolean hasOtherToppings = false;
@@ -68,6 +74,11 @@ public class UserInterface {
                                 boolean extraToppings = false;
                                 boolean extraSauces = false;
                                 boolean extraSides = false;
+//                                toppingsTypeHashMap.put(meatsArr, "meat");
+//                                toppingsTypeHashMap.put(cheesesArr, "cheese");
+//                                toppingsTypeHashMap.put(additionalToppingsArr, "additional toppings");
+//                                toppingsTypeHashMap.put(saucesArr, "sauces");
+//                                toppingsTypeHashMap.put(sidesArr, "sides");
                                 
                                 /* • Add Sandwich - the add sandwich screen will walk the user through
                                    several options to create the sandwich*/
@@ -102,9 +113,8 @@ public class UserInterface {
                                 }
                                 
                                 System.out.println("Next, we have your toppings!\n");
-                                        // ■ Meat:
-                                            // display list of available meats
                                 System.out.println("Select a meat:");
+                                
                                 displaySandwichOptions(meatsArr);
     
                                 System.out.println("Enter your selection here:");
@@ -119,32 +129,36 @@ public class UserInterface {
                                     System.out.println("This meat is not available.");
                                     break;
                                 }
-    
-                                // if there's meat...
-                                if (hasMeat) {
-                                    System.out.println("Would you like extra meat? (Type 1 for \"Yes\" / Type 0 for \"No\")");
-                                    int extraToppingChoice = scanner.nextInt();
-                                    if (extraToppingChoice == 1) {
-                                        extraMeat = true;
-                                    } else if (extraToppingChoice == 0) {
-                                        extraMeat = false;
-                                    } else {
-                                        System.out.println("ERROR: Must type 1 or 0!");
-                                    }
-                                }
+                                extraMeat = processExtraToppingInquiry(hasMeat, "meat");
                                 
                                         // ■ Cheese:
                                             // display list of available cheeses
+                                System.out.println("Select a cheese:");
+                                displaySandwichOptions(cheesesArr);
     
-                                            // if there's cheese...
-                                System.out.println("Would you like extra cheese? (Y/N)");
+                                System.out.println("Enter your selection here:");
+                                int cheeseSelection = scanner.nextInt();
+    
+                                String cheese = sandwichOptionSelection(cheesesArr, cheeseSelection);
+    
+                                if (!cheese.equals("") && !cheese.equalsIgnoreCase("no cheese")) {
+                                    System.out.println("You selected: " + meat);
+                                    hasCheese = true;
+                                } else if (cheese.equals("")) {
+                                    System.out.println("This cheese is not available.");
+                                    break;
+                                }
+                                extraCheese = processExtraToppingInquiry(hasCheese, "cheese");
                                 
                                         // ■ Other toppings:
                                             // display list of additional toppings (these are FREE)
-                                
+                                System.out.println("Select additional toppings:");
+                                displaySandwichOptions(additionalToppingsArr);
                                 
                                             // ----> for or do-while loop (for multiple toppings)
                                             // add all toppings to additionalToppings ArrayList
+                                System.out.println("Enter your selection here:");
+                                int additionalToppingsSelection = scanner.nextInt();
                                 
                                 
                                             // if there's additional toppings...
@@ -169,8 +183,8 @@ public class UserInterface {
                                             // add all sides to sides ArrayList
     
     
-                                            // if there's sauce(s)...
-                                System.out.println("Would you like extra sauce? (Y/N)");
+                                            // if there's side(s)...
+                                System.out.println("Would you like extra sides? (Y/N)");
                                 
                                     // - Would you like the sandwich toasted?
                                 System.out.println("Would you like the sandwich toasted?");
@@ -268,34 +282,87 @@ public class UserInterface {
         return optionItem;
     }
     
+    public static ArrayList<String> sandwichMultiOptionSelection(String[] options, ArrayList<String> toppingItems, String toppingType) {
+        boolean wantsMoreTopping = false;
+        boolean duplicateToppings = false;
+        int optionNumChoice = 0;
+        int count = 0;
+        
+        do {
+            System.out.println("Enter your selection here:");
+            int toppingsSelectionNum = scanner.nextInt();
+    
+            String toppingItem = sandwichOptionSelection(options, toppingsSelectionNum);
+    
+            if (toppingsSelectionNum < options.length+1) {
+                
+                for (int i = 0; i < toppingItems.size(); i++) {
+                    if (toppingItem.equalsIgnoreCase(toppingItems.get(i))) {
+                        duplicateToppings = true;
+                        System.out.println("\nYou have already added this " + toppingType + "!\n");
+                        break;
+                    }
+                }
+                if (!duplicateToppings) {
+                    toppingItems.add(toppingItem);
+                    ++count;
+                }
+                
+            } else {
+                System.out.println("\nERROR: Must type the corresponding number of the options listed! (e.g. 1)\n");
+            }
+            
+            do {
+                System.out.println("Would you like to add another " + toppingType + "? (Type 1 for \"Yes\" / Type 0 for \"No\")");
+                optionNumChoice = scanner.nextInt();
+    
+                switch (optionNumChoice) {
+                    case 1:
+                        wantsMoreTopping = true;
+                        break;
+                    case 0:
+                        break;
+                    default:
+                        System.out.println("\nERROR: Must type 1 or 0!\n");
+                        break;
+                }
+            } while(optionNumChoice != 1 && optionNumChoice != 0);
+        } while (!wantsMoreTopping && count < options.length);
+        
+        if (count == options.length) {
+            System.out.println("\n\tThere are only " + options.length + " " + toppingType + "s available.\n");
+        }
+        
+        return toppingItems;
+    }
+    
     public static void processAddSandwichRequest() {
     
     }
     
-    public static boolean processExtraToppingInquiry(boolean hasOption, String optionType) {
-        boolean extraOption = false;
+    public static boolean processExtraToppingInquiry(boolean hasTopping, String toppingType) {
+        boolean extraToppingOption = false;
     
-        int extraOptionChoice = 0;
+        int optionNumChoice = 0;
         do {
-            if (hasOption) {
-                System.out.println("Would you like extra " + optionType + "? (Type 1 for \"Yes\" / Type 0 for \"No\")");
-                extraOptionChoice = scanner.nextInt();
+            if (hasTopping) {
+                System.out.println("Would you like extra " + toppingType + "? (Type 1 for \"Yes\" / Type 0 for \"No\")");
+                optionNumChoice = scanner.nextInt();
         
-                switch (extraOptionChoice) {
+                switch (optionNumChoice) {
                     case 1:
-                        extraOption = true;
+                        extraToppingOption = true;
                         break;
                     case 0:
-                        extraOption = false;
                         break;
                     default:
-                        System.out.println("ERROR: Must type 1 or 0!");
+                        System.out.println("ERROR: Must type 1 or 0!\n");
                         break;
                 }
             }
-        } while (extraOptionChoice != 1 && extraOptionChoice != 0);
+        } while (optionNumChoice != 1 && optionNumChoice != 0);
         
-        return extraOption;
+        return extraToppingOption;
     }
     
     public static void processAddDrinkRequest() {
