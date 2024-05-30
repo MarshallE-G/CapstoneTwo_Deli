@@ -2,6 +2,7 @@ package com.ps;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -267,28 +268,56 @@ public class UserInterface {
     
     }
     
-    public static void displaySandwichOptions(String[] options) {
-        for (int i = 0; i < options.length; i++) {
-            System.out.println("\t" + (i+1) + ") " + options[i]);
+    public static void displaySandwichOptions(String[] optionsArr) {
+        for (int i = 0; i < optionsArr.length; i++) {
+            System.out.println("\t" + (i+1) + ") " + optionsArr[i]);
         }
         System.out.println();
     }
     
-    public static String sandwichOptionSelection(String[] options, int selection) {
+    public static void displayNewSandwichOptions(String[] optionsArr, ArrayList<String> addedOptions, int selection) {
+        ArrayList<String> allOptions = new ArrayList<>();
+    
+        for (int i = 0; i < optionsArr.length; i++) {
+            allOptions.add(optionsArr[i]);
+        }
+        
+        Iterator<String> iterator = allOptions.iterator();
+        
+        for (int i = 0; i < addedOptions.size(); i++) {
+            while (iterator.hasNext()) {
+                String option = iterator.next();
+                if (
+                        !option.equalsIgnoreCase(allOptions.get(allOptions.size()-1)) &&
+                                option.equalsIgnoreCase(addedOptions.get(i))
+                ) {
+                    iterator.remove();
+                }
+            }
+        }
+    
+        for (int i = 0; i < allOptions.size(); i++) {
+            System.out.println("\t" + (i+1) + ") " + allOptions.get(i));
+        }
+        
+        System.out.println();
+    }
+    
+    public static String sandwichOptionSelection(String[] optionsArr, int selection) {
         String optionItem = "";
         
-        for (int i = 1; i < options.length; i++) {
+        for (int i = 1; i < optionsArr.length; i++) {
             if (selection == 1) {
-                optionItem = options[0];
+                optionItem = optionsArr[0];
             } else if (selection == i+1) {
-                optionItem = options[i];
+                optionItem = optionsArr[i];
             }
         }
         
         return optionItem;
     }
     
-    public static ArrayList<String> sandwichMultiOptionSelection(String[] options, ArrayList<String> toppingItems, String toppingType) {
+    public static ArrayList<String> sandwichMultiOptionSelection(String[] optionsArr, ArrayList<String> toppingItems, String toppingType) {
         boolean wantsMoreTopping = false;
         boolean duplicateToppings = false;
         int optionNumChoice = 0;
@@ -299,9 +328,9 @@ public class UserInterface {
             System.out.println("Enter your selection here:");
             int toppingsSelectionNum = scanner.nextInt();
     
-            toppingItem = sandwichOptionSelection(options, toppingsSelectionNum);
+            toppingItem = sandwichOptionSelection(optionsArr, toppingsSelectionNum);
     
-            if (toppingsSelectionNum < options.length+1) {
+            if (toppingsSelectionNum < optionsArr.length+1) {
                 
                 for (int i = 0; i < toppingItems.size(); i++) {
                     if (toppingItem.equalsIgnoreCase(toppingItems.get(i))) {
@@ -339,12 +368,12 @@ public class UserInterface {
             } while(optionNumChoice != 1 && optionNumChoice != 0);
         } while (
                 wantsMoreTopping &&
-                        count < options.length-1 &&
-                        !toppingItem.equalsIgnoreCase(options[options.length-1])
+                        count < optionsArr.length-1 &&
+                        !toppingItem.equalsIgnoreCase(optionsArr[optionsArr.length-1])
         );
         
-        if (count == options.length-1) {
-            System.out.println("\n\tYou cannot add another " + toppingType + " as there are only " + (options.length-1) + " available.\n");
+        if (count == optionsArr.length-1) {
+            System.out.println("\n\tYou cannot add another " + toppingType + " as there are only " + (optionsArr.length-1) + " available.\n");
         }
         
         return toppingItems;
