@@ -72,7 +72,7 @@ public class UserInterface {
                     if (!order.getProducts().isEmpty()) {
                         System.out.println("\n~You chose the Checkout option~\n");
                     
-                        int selectedCheckoutOptionNum = 0;
+                        int selectedCheckoutOptionNum;
                         do {
                             order.checkout();
                         
@@ -150,8 +150,10 @@ public class UserInterface {
             int selectedBreadTypeNum = scanner.nextInt();
         
             breadType = optionSelection(breadTypesArr, selectedBreadTypeNum);
-        
-            if (breadType.equals("")) {
+    
+            if (!breadType.equals("")) {
+                System.out.println("\nYou selected: " + breadType + "\n");
+            } else {
                 System.out.println("\nERROR: Not a valid option number.\n");
                 return;
             }
@@ -165,8 +167,10 @@ public class UserInterface {
             int selectedSandwichSizeNum = scanner.nextInt();
         
             sandwichSize = optionSelection(sandwichSizesArr, selectedSandwichSizeNum);
-        
-            if (sandwichSize.equals("")) {
+            
+            if (!sandwichSize.equals("")) {
+                System.out.println("\nYou selected: " + sandwichSize + "\n");
+            } else {
                 System.out.println("\nERROR: Not a valid option number.\n");
                 return;
             }
@@ -216,7 +220,7 @@ public class UserInterface {
         System.out.println("Select additional toppings:");
             displayOptions(additionalToppingsArr, "additional topping");
         
-            additionalToppings = multiOptionSelection(additionalToppingsArr, "additional topping");
+            additionalToppings = multiOptionsSelection(additionalToppingsArr, "additional topping");
         
             System.out.println("Additional toppings selected:");
             for (String topping : additionalToppings) {
@@ -235,7 +239,7 @@ public class UserInterface {
         System.out.println("Select sauces:");
             displayOptions(saucesArr, "sauce");
         
-            sauces = multiOptionSelection(saucesArr, "sauce");
+            sauces = multiOptionsSelection(saucesArr, "sauce");
     
             System.out.println("Sauce(s) selected:");
             for (String sauce : sauces) {
@@ -254,7 +258,7 @@ public class UserInterface {
         System.out.println("Select sides:");
             displayOptions(sidesArr, "side");
         
-            sides = multiOptionSelection(sidesArr, "side");
+            sides = multiOptionsSelection(sidesArr, "side");
     
             System.out.println("Side(s) selected:");
             for (String side : sides) {
@@ -269,7 +273,7 @@ public class UserInterface {
     
     
     
-        int selectedOptionNum = 0;
+        int selectedOptionNum;
         do {
             System.out.println("Would you like the sandwich toasted? (Type 1 for \"Yes\" / Type 0 for \"No\")");
             selectedOptionNum = scanner.nextInt();
@@ -468,12 +472,12 @@ public class UserInterface {
         return optionItem;
     }
     
-    public static ArrayList<String> multiOptionSelection(String[] optionsArr, String optionType) {
+    public static ArrayList<String> multiOptionsSelection(String[] optionsArr, String optionType) {
         ArrayList<String> selectedOptionItems = new ArrayList<>();
         boolean wantsMoreOptions = false;
         boolean duplicateOptions = false;
         int selectedOptionNum = 0;
-        int additionalOptionNumChoice = 0;
+        int additionalOptionNumChoice;
         int count = 0;
         String selectedOptionItem = "";
     
@@ -490,7 +494,11 @@ public class UserInterface {
     
             selectedOptionItem = optionSelection(allOptions, selectedOptionNum);
     
-            if (selectedOptionNum < allOptions.size()+1 && !selectedOptionItem.equalsIgnoreCase(lastOption)) {
+            if (
+                    (selectedOptionNum < (allOptions.size() + 1))
+                            && (selectedOptionNum > 0)
+                            && !selectedOptionItem.equalsIgnoreCase(lastOption)
+            ) {
                 
                 for (String alreadySelectedItem : selectedOptionItems) {
                     if (selectedOptionItem.equalsIgnoreCase(alreadySelectedItem)) {
