@@ -338,38 +338,50 @@ public class UserInterface {
                                 break;
                             case 4:
                                 System.out.println("\n~You chose the Checkout option~\n");
-                                
-                                order.checkout();
-                                
-                                    // - Confirm - create the receipt file and go back to the home screen
-                                System.out.println("1) Confirm");
-                                FileManager.saveReceipt(order);
-                                
-                                    // - Cancel - delete order and go back to the home screen
-                                System.out.println("0) Cancel");
-                                
-                                        // if cancel...
-                                            // remove order
-                                order.clear();
-                                System.out.println("~~You have canceled the order!~~");
-//                                orderMenuCommand = 0;
+    
+                                int selectedCheckoutOptionNum = 0;
+                                do {
+                                    order.checkout();
+                                    
+                                    System.out.println("\nPlease select an option:");
+                                    System.out.println("1) Confirm");
+                                    System.out.println("0) Cancel");
+    
+                                    System.out.println("\nEnter your selection here:");
+                                    selectedCheckoutOptionNum = scanner.nextInt();
+    
+                                    switch (selectedCheckoutOptionNum) {
+                                        case 1:
+                                            System.out.println("~~You have confirmed your order!~~");
+                                            FileManager.saveReceipt(order);
+                                            orderMenuCommand = 0;
+                                            break;
+                                        case 0:
+                                            System.out.println("~~You have canceled the order!~~");
+                                            order.clear();
+                                            orderMenuCommand = 0;
+                                            break;
+                                        default:
+                                            System.out.println("\nERROR: Not a valid option number. Must type 1 or 0!\n");
+                                            break;
+                                    }
+                                } while (selectedCheckoutOptionNum != 1 && selectedCheckoutOptionNum != 0);
                             case 0:
                                 System.out.println("\nReturning to Home Menu...\n");
                                 break;
                             default:
-                                // Add error msg
+                                System.out.println("\nERROR: Not a valid option number. Must type 1, 2, 3, 4, or 0!\n");
+                                break;
                         }
-
-
                     } while (orderMenuCommand != 0);
                     break;
                 case 0:
                     System.out.println("\nExiting...\n");
                     break;
                 default:
-                    // Add error msg
+                    System.out.println("\nERROR: Not a valid option number. Must type 1 or 0!\n");
+                    break;
             }
-
         } while (homeMenuCommand != 0);
         scanner.close();
     }
