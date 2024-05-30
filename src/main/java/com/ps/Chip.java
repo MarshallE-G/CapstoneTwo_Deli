@@ -7,7 +7,7 @@ Represents a bag of "chips"
 public class Chip extends Product{
     private String chipType;
     
-    public Chip(double price, String chipType) {
+    public Chip(String chipType) {
         super();
         this.chipType = chipType;
     }
@@ -32,7 +32,7 @@ public class Chip extends Product{
     
         return "Chip{" +
                 "chipType='" + chipType + '\'' +
-                "\nprice=" + price +
+                "\nprice= $" + price +
                 '}';
     }
 }

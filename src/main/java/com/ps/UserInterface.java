@@ -269,6 +269,7 @@ public class UserInterface {
                                 
                                 System.out.println("\n~You chose the Add Drink option~\n");
                                 
+                                
                                 // • Add Drink - select drink size and flavor
                                 System.out.println("Select your drink size:");
                                     displayOptions(drinkSizesArr, "drink size");
@@ -296,15 +297,30 @@ public class UserInterface {
                                 order.add(drink);
                                 break;
                             case 3:
-                                System.out.println("\n~You chose the Add chips option~\n");
+                                String[] chipTypeArr = {
+                                        "flamin' hot cheetos (crunchy)", "flamin' hot cheetos (puffy)", "red doritos",
+                                        "blue doritos", "potato chips", "bbq chips", "cheddar cheese",
+                                        "sour cream & onion", "salt & vinegar", "takis", "hot fries"
+                                };
+                                String chipType;
                                 
-                                // • Add Chips - select chip type
+                                System.out.println("\n~You chose the Add Chips option~\n");
+                                
+                                
                                 System.out.println("Select your chip type:");
-    
-                                    // display all available chips
-    
-                                System.out.println("Please enter your selection here:");
+                                    displayOptions(chipTypeArr, "chip type");
+                                    
+                                    System.out.println("Please enter your selection here:");
+                                    int selectedChipTypeNum = scanner.nextInt();
+                                    
+                                    chipType = optionSelection(chipTypeArr, selectedChipTypeNum);
+        
+                                    System.out.println("\nYou selected \"" + chipType + "\"\n");
                                 
+                                Chip chip = new Chip(chipType);
+                                System.out.println(chip);
+                                
+                                order.add(chip);
                                 break;
                             case 4:
                                 System.out.println("\n~You chose the Checkout option~\n");

@@ -321,7 +321,7 @@ public class Sandwich extends Product {
 //
 //        selectedAddOns +=
 //                ", toasted=" + isToasted +
-//                "\nprice= " + price +
+//                "\nprice= $" + price +
 //                '}';
 //
 //        return selectedAddOns;
@@ -356,7 +356,7 @@ public class Sandwich extends Product {
                 ", hasSides=" + hasSides +
                 ", extraSides=" + extraSides +
                 ", toasted=" + isToasted +
-                "\nprice= " + price +
+                "\nprice= $" + price +
                 '}';
     }
 }

@@ -58,7 +58,7 @@ public class Drink extends Product {
         return "Drink{" +
                 "drinkSize='" + drinkSize + '\'' +
                 ", flavor='" + flavor + '\'' +
-                "\nprice=" + price +
+                "\nprice= $" + price +
                 '}';
     }
 }
