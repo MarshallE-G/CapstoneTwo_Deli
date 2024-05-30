@@ -1,0 +1,5 @@
+SANDWICH|white|4"|steak|cheddar|lettuce, peppers, onions, tomatoes, jalapenos, cucumbers, pickles|mayo, mustard, ketchup, ranch, thousand islands, vinaigrette|au jus, sauce|extra meat|extra cheese|extra topping(s)|extra sauce(s)|extra side(s)|toasted|$8.05
+DRINK|medium|dr. pepper|$2.50
+CHIP|salt & vinegar|$1.50
+
+Total Price: $12.05

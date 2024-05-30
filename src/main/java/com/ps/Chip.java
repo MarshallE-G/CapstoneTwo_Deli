@@ -32,7 +32,7 @@ public class Chip extends Product{
     
         return "Chip:" +
                 "\n- Chip type: " + chipType +
-                "\n\nPrice: $" + price +
+                "\nPrice: $" + price +
                 "\n";
     }
 }

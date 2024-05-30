@@ -58,7 +58,7 @@ public class Drink extends Product {
         return "Drink:" +
                 "\n- Size: " + this.drinkSize +
                 "\n- Flavor: " + this.flavor +
-                "\n\nPrice: $" + price +
+                "\nPrice: $" + price +
                 "\n";
     }
 }

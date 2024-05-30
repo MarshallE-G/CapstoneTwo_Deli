@@ -95,7 +95,7 @@ public class UserInterface {
                                     
                                     
                                     
-                                System.out.println("Select a sandwich size:");
+                                System.out.println("\nSelect a sandwich size:");
                                     displayOptions(sandwichSizesArr, "sandwich size");
         
                                     System.out.println("Enter your selection here:");
@@ -109,7 +109,7 @@ public class UserInterface {
                                     }
                                 
                                     
-                                System.out.println("\tNext, we have your toppings!\n");
+                                System.out.println("\t~~Next, we have toppings!~~\n");
                                 
                                 
                                 System.out.println("Select a meat:");
@@ -128,8 +128,6 @@ public class UserInterface {
                                         break;
                                     }
                                     extraMeat = processExtraToppingInquiry(hasMeat, "meat");
-        
-                                    System.out.println("\nExtra meat? " + extraMeat);
                                 
                                     
                                     
@@ -149,10 +147,8 @@ public class UserInterface {
                                         break;
                                     }
                                     extraCheese = processExtraToppingInquiry(hasCheese, "cheese");
-        
-                                    System.out.println("\nExtra cheese? " + extraCheese + "\n");
                                 
-                                    
+                                
                                 
                                 System.out.println("Select additional toppings:");
                                     displayOptions(additionalToppingsArr, "additional topping");
@@ -170,8 +166,6 @@ public class UserInterface {
                                     }
                                     
                                     extraToppings = processExtraToppingInquiry(hasOtherToppings, "additional toppings");
-                                    
-                                    System.out.println("\nExtra additional toppings? " + extraToppings + "\n");
                                 
                                     
                                     
@@ -191,8 +185,6 @@ public class UserInterface {
                                     }
         
                                     extraSauces = processExtraToppingInquiry(hasSauces, "sauce");
-        
-                                    System.out.println("\nExtra sauces? " + extraSauces + "\n");
                                 
                                     
                                     
@@ -211,6 +203,7 @@ public class UserInterface {
                                         hasSides = true;
                                     }
                                     extraSides = processExtraToppingInquiry(hasSides, "side");
+                                    
                                     
                                     
                                 int selectedOptionNum = 0;

@@ -26,7 +26,7 @@ public class Order implements Chargeable{
     
         System.out.println("Your Order details:");
         for (Product product : this.products) {
-            System.out.println("\t" + product + "\n");
+            System.out.println(product);
         }
     
         System.out.printf("Total price: $%.2f\n", orderPrice);

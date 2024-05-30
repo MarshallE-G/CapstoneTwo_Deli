@@ -341,7 +341,7 @@ public class Sandwich extends Product {
         }
 
         selectedAddOns +=
-                "\n\nPrice: $" + price +
+                "\nPrice: $" + price +
                 "\n";
 
         return selectedAddOns;
