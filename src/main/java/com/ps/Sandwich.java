@@ -335,9 +335,9 @@ public class Sandwich extends Product {
         }
         
         if (this.isToasted) {
-            selectedAddOns += "\n• NOT toasted!";
-        } else {
             selectedAddOns += "\n• Toasted!";
+        } else {
+            selectedAddOns += "\n• NOT toasted!";
         }
 
         selectedAddOns +=

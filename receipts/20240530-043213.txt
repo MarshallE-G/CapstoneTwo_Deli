@@ -1,0 +1,5 @@
+SANDWICH|wrap|12"|ham|cheddar|onions, cucumbers, tomatoes|mayo, mustard, ketchup|sauce|extra topping(s)|extra sauce(s)|toasted|$13.75
+DRINK|large|cherry soda|$3.00
+CHIP|blue doritos|$1.50
+
+Total Price: $18.25
