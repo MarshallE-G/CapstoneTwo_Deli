@@ -20,7 +20,7 @@ public class UserInterface {
     public static void displayHomeMenu() {
         int homeMenuCommand;
         do {
-            System.out.printf("%40s\u001b[22;23;24m\n", "\u001b[1;3;4mWelcome to DELI-cious!");
+            System.out.printf("%52s\u001b[22;23;24m\n", "\u001b[1;3;4mWelcome to the DELI-cious Online Deli!");
             System.out.println("\nHome Menu\n");
         
             System.out.println("1) New Order");
@@ -99,7 +99,7 @@ public class UserInterface {
                             }
                         } while (true);
                     } else {
-                        System.out.println("\nYou must add items to your order before checking out!!\n");
+                        System.out.println("\nYou must add items to your order before you can checkout!!\n");
                         break;
                     }
                 case 0:
@@ -160,7 +160,7 @@ public class UserInterface {
     
     
     
-        System.out.println("\nSelect a sandwich size:");
+        System.out.println("Select a sandwich size:");
             displayOptions(sandwichSizesArr, "sandwich size");
         
             System.out.println("Enter your selection here:");
@@ -492,12 +492,13 @@ public class UserInterface {
             System.out.println("Enter your selection here:");
             selectedOptionNum = scanner.nextInt();
     
-            selectedOptionItem = optionSelection(allOptions, selectedOptionNum);
-    
-            if (selectedOptionNum < 0 || selectedOptionNum >= (allOptions.size() + 1)) {
+            if (selectedOptionNum < 1 || selectedOptionNum > (allOptions.size())) {
+                selectedOptionItem = optionSelection(allOptions, selectedOptionNum);
+                
                 System.out.println("\nERROR: Must type a number that corresponds with an option listed! (e.g. 1)\n");
                 continue;
-            } else if (!selectedOptionItem.equalsIgnoreCase(lastOption)) {
+            }
+            if (!selectedOptionItem.equalsIgnoreCase(lastOption)) {
                 
                 for (String alreadySelectedItem : selectedOptionItems) {
                     if (selectedOptionItem.equalsIgnoreCase(alreadySelectedItem)) {
