@@ -21,14 +21,11 @@ public class UserInterface {
         do {
             System.out.printf("%40s\n", "Welcome to DELI-cious!");
             System.out.println("\nHome Menu\n");
-            /* - The home screen should give the user the following options. The
-               application should continue to run until the user chooses to exit.*/
-                // 1) New Order
+            
             System.out.println("1) New Order");
-                // 0) Exit - exit the application
             System.out.println("0) Exit");
     
-            System.out.println("Please enter your selection here:");
+            System.out.println("\nPlease enter your selection here:");
             homeMenuCommand = scanner.nextInt();
             
             switch (homeMenuCommand) {
@@ -46,10 +43,9 @@ public class UserInterface {
                         System.out.println("2) Add Drink");
                         System.out.println("3) Add Chips");
                         System.out.println("4) Checkout");
-                            // 0) Cancel Order - delete the order and go back to the home page
                         System.out.println("0) Cancel Order");
     
-                        System.out.println("Please enter selection here:");
+                        System.out.println("\nPlease enter selection here:");
                         orderMenuCommand = scanner.nextInt();
                         
                         switch (orderMenuCommand) {
@@ -82,7 +78,7 @@ public class UserInterface {
                                 boolean extraSides;
                                 boolean isToasted = false;
                                 
-                                System.out.println("\n~You chose the Add Sandwich option~\n");
+                                System.out.println("\n\t~You chose the Add Sandwich option~\n");
                                 
                                 System.out.println("Select your bread:");
                                     displayOptions(breadTypesArr, "bread type");
@@ -113,7 +109,7 @@ public class UserInterface {
                                     }
                                 
                                     
-                                System.out.println("Next, we have your toppings!\n");
+                                System.out.println("\tNext, we have your toppings!\n");
                                 
                                 
                                 System.out.println("Select a meat:");
@@ -128,7 +124,7 @@ public class UserInterface {
                                         System.out.println("\nYou selected: " + meat + "\n");
                                         hasMeat = true;
                                     } else if (meat.equals("")) {
-                                        System.out.println("ERROR: Not a valid option number.\n");
+                                        System.out.println("\nERROR: Not a valid option number.\n");
                                         break;
                                     }
                                     extraMeat = processExtraToppingInquiry(hasMeat, "meat");
@@ -149,7 +145,7 @@ public class UserInterface {
                                         System.out.println("\nYou selected: " + cheese + "\n");
                                         hasCheese = true;
                                     } else if (cheese.equals("")) {
-                                        System.out.println("ERROR: Not a valid option number.\n");
+                                        System.out.println("\nERROR: Not a valid option number.\n");
                                         break;
                                     }
                                     extraCheese = processExtraToppingInquiry(hasCheese, "cheese");
@@ -214,10 +210,7 @@ public class UserInterface {
                                     if (!sides.get(0).equalsIgnoreCase("no side")) {
                                         hasSides = true;
                                     }
-        
                                     extraSides = processExtraToppingInquiry(hasSides, "side");
-                                    System.out.println("\nExtra sides? " + extraSides + "\n");
-                                
                                     
                                     
                                 int selectedOptionNum = 0;
@@ -228,15 +221,16 @@ public class UserInterface {
                                     switch (selectedOptionNum) {
                                         case 1:
                                             isToasted = true;
+                                            System.out.println("\nYou selected \"Yes\"\n");
                                             break;
                                         case 0:
+                                            System.out.println("\nYou selected \"No\"\n");
                                             break;
                                         default:
-                                            System.out.println("ERROR: Must type 1 or 0!\n");
+                                            System.out.println("\nERROR: Must type 1 or 0!\n");
                                             break;
                                     }
                                 } while (selectedOptionNum != 1 && selectedOptionNum != 0);
-                                System.out.println("\nSandwich is toasted? " + isToasted + "\n");
                                 
                                 Product sandwich = new Sandwich(
                                         breadType,
@@ -267,7 +261,7 @@ public class UserInterface {
                                 String drinkSize;
                                 String flavor;
                                 
-                                System.out.println("\n~You chose the Add Drink option~\n");
+                                System.out.println("\n\t~You chose the Add Drink option~\n");
                                 
                                 
                                 // • Add Drink - select drink size and flavor
@@ -314,7 +308,7 @@ public class UserInterface {
                                 };
                                 String chipType;
                                 
-                                System.out.println("\n~You chose the Add Chips option~\n");
+                                System.out.println("\n\t~You chose the Add Chips option~\n");
                                 
                                 
                                 System.out.println("Select your chip type:");
@@ -352,12 +346,12 @@ public class UserInterface {
     
                                     switch (selectedCheckoutOptionNum) {
                                         case 1:
-                                            System.out.println("~~You have confirmed your order!~~");
+                                            System.out.println("\n~~You have confirmed your order!~~");
                                             FileManager.saveReceipt(order);
                                             orderMenuCommand = 0;
                                             break;
                                         case 0:
-                                            System.out.println("~~You have canceled the order!~~");
+                                            System.out.println("\n~~You have canceled the order!~~");
                                             order.clear();
                                             orderMenuCommand = 0;
                                             break;
@@ -573,11 +567,13 @@ public class UserInterface {
                 switch (optionNumChoice) {
                     case 1:
                         extraToppingOption = true;
+                        System.out.println("\nYou selected \"Yes\"\n");
                         break;
                     case 0:
+                        System.out.println("\nYou selected \"No\"\n");
                         break;
                     default:
-                        System.out.println("ERROR: Must type 1 or 0!\n");
+                        System.out.println("\nERROR: Must type 1 or 0!\n");
                         break;
                 }
             }
@@ -585,22 +581,6 @@ public class UserInterface {
         
         return extraToppingOption;
     }
-    
-//    public static void processCheckoutRequest(int orderMenuCommand) {
-//        System.out.println("\n~You chose the Checkout option~\n");
-//        // • Checkout - display the order details and the price
-//
-//            // - Confirm - create the receipt file and go back to the home screen
-//        System.out.println("1) Confirm");
-//
-//            // - Cancel - delete order and go back to the home screen
-//        System.out.println("0) Cancel");
-//
-//                // if cancel...
-//                    // remove order
-//        System.out.println("~~You have canceled the order!~~");
-//        orderMenuCommand = 0;
-//    }
     
     
     //  Might add a back button that you can press... at (almost) anytime. Might require a whole Generic Class

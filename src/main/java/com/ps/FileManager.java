@@ -3,21 +3,19 @@ package com.ps;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class FileManager {
-    // Have to create a new File everytime there's a new receipt;
     public static void saveReceipt(Order order) {
-        LocalDateTime dateTime = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd-hhmmss");
-        String formattedDateTime = dateTime.format(formatter);
-        String fileName = formattedDateTime + ".txt";
-        String additionalToppingsStr;
-        String saucesStr ;
-        String sidesStr;
-        double totalPrice = 0;
+        LocalDateTime     dateTime          = LocalDateTime.now();
+        DateTimeFormatter formatter         = DateTimeFormatter.ofPattern("yyyyMMdd-hhmmss");
+        String            formattedDateTime = dateTime.format(formatter);
+        String            fileName          = formattedDateTime + ".txt";
+        String            additionalToppingsStr;
+        String            saucesStr;
+        String            sidesStr;
+        double            totalPrice        = 0;
         
         try {
             BufferedWriter bufWriter = new BufferedWriter(new FileWriter(
@@ -30,7 +28,8 @@ public class FileManager {
                     saucesStr = ((Sandwich) product).listToString(((Sandwich) product).getSauces());
                     sidesStr = ((Sandwich) product).listToString(((Sandwich) product).getSides());
                     
-                    bufWriter.write(String.format("%s|%s|%s|%s|%s|%s|%s",
+                    bufWriter.write(String.format(
+                            "SANDWICH|%s|%s|%s|%s|%s|%s|%s",
                             ((Sandwich) product).getBreadType(),
                             ((Sandwich) product).getSandwichSize(),
                             ((Sandwich) product).getMeat(),
@@ -38,7 +37,7 @@ public class FileManager {
                             additionalToppingsStr,
                             saucesStr,
                             sidesStr
-                            ));
+                    ));
                     
                     if (((Sandwich) product).hasExtraMeat()) {
                         bufWriter.write("|extra meat");
@@ -65,17 +64,19 @@ public class FileManager {
                     bufWriter.write(String.format("|$%.2f\n", product.calcPrice()));
                     
                 } else if (product instanceof Drink) {
-                    bufWriter.write(String.format("%s|%s|$%.2f\n",
+                    bufWriter.write(String.format(
+                            "DRINK|%s|%s|$%.2f\n",
                             ((Drink) product).getDrinkSize(),
                             ((Drink) product).getFlavor(),
                             product.calcPrice()
-                            ));
+                    ));
                     
                 } else if (product instanceof Chip) {
-                    bufWriter.write(String.format("%s|$%.2f\n",
+                    bufWriter.write(String.format(
+                            "CHIP|%s|$%.2f\n",
                             ((Chip) product).getChipType(),
                             product.calcPrice()
-                            ));
+                    ));
                 }
                 
                 totalPrice += product.calcPrice();

@@ -1,0 +1,5 @@
+white|12"|no meat|no cheese|no toppings|no sauce|no side|toasted|$8.50
+large|mountain dew|$3.00
+takis|$1.50
+
+Total Price: $13.00

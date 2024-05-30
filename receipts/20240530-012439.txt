@@ -1,0 +1,5 @@
+SANDWICH|wheat|8"|bacon|no cheese|lettuce, tomatoes, guacamole|mayo, mustard, ketchup|sauce|extra meat|extra topping(s)|extra sauce(s)|toasted|$10.00
+DRINK|medium|sprite|$2.50
+CHIP|cheddar cheese|$1.50
+
+Total Price: $14.00
