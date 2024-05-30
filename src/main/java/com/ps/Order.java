@@ -27,9 +27,10 @@ public class Order implements Chargeable{
     // checkout() : void (calculates order price and displays order details)
     public void checkout() {
         double orderPrice = this.calcPrice();
-        
-        for (int i = 0; i < this.products.size(); i++) {
-            System.out.println(products.get(i));
+    
+        System.out.println("Your Order details:");
+        for (Product product : this.products) {
+            System.out.println("\t" + product + "\n");
         }
     
         System.out.println("Total price: " + orderPrice);

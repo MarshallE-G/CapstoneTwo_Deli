@@ -33,11 +33,11 @@ public class UserInterface {
             
             switch (homeMenuCommand) {
                 case 1:
+                    Order order = new Order();
                     
                     int orderMenuCommand;
-                    
                     do {
-                        Order order = new Order();
+                        
                         
                         // • Order Screen - All entries should show the newest entries first
                         System.out.println("\nOrder Menu\n");
@@ -93,7 +93,7 @@ public class UserInterface {
                                     breadType = optionSelection(breadTypesArr, selectedBreadTypeNum);
                                     
                                     if (breadType.equals("")) {
-                                        System.out.println("That bread is not available at our store.\n");
+                                        System.out.println("\nERROR: Not a valid option number.\n");
                                         break;
                                     }
                                     
@@ -108,7 +108,7 @@ public class UserInterface {
                                     sandwichSize = optionSelection(sandwichSizesArr, selectedSandwichSizeNum);
                                     
                                     if (sandwichSize.equals("")) {
-                                        System.out.println("Sandwiches do not come in this size.\n");
+                                        System.out.println("\nERROR: Not a valid option number.\n");
                                         break;
                                     }
                                 
@@ -128,7 +128,7 @@ public class UserInterface {
                                         System.out.println("\nYou selected: " + meat + "\n");
                                         hasMeat = true;
                                     } else if (meat.equals("")) {
-                                        System.out.println("This meat is not available.");
+                                        System.out.println("ERROR: Not a valid option number.\n");
                                         break;
                                     }
                                     extraMeat = processExtraToppingInquiry(hasMeat, "meat");
@@ -149,7 +149,7 @@ public class UserInterface {
                                         System.out.println("\nYou selected: " + cheese + "\n");
                                         hasCheese = true;
                                     } else if (cheese.equals("")) {
-                                        System.out.println("This cheese is not available.");
+                                        System.out.println("ERROR: Not a valid option number.\n");
                                         break;
                                     }
                                     extraCheese = processExtraToppingInquiry(hasCheese, "cheese");
@@ -238,7 +238,7 @@ public class UserInterface {
                                 } while (selectedOptionNum != 1 && selectedOptionNum != 0);
                                 System.out.println("\nSandwich is toasted? " + isToasted + "\n");
                                 
-                                Sandwich sandwich = new Sandwich(
+                                Product sandwich = new Sandwich(
                                         breadType,
                                         sandwichSize,
                                         meat,
@@ -278,6 +278,11 @@ public class UserInterface {
                                     int selectedDrinkSizeNum = scanner.nextInt();
                                     
                                     drinkSize = optionSelection(drinkSizesArr, selectedDrinkSizeNum);
+                                    if (drinkSize.equals("")) {
+                                        System.out.println("\nERROR: Not a valid option number.\n");
+                                        break;
+                                    }
+                                    
                                     System.out.println("\nYou selected a \"" + drinkSize + "\" drink size.\n");
                                 
                                 
@@ -289,9 +294,14 @@ public class UserInterface {
                                     int selectedFlavorNum = scanner.nextInt();
                                     
                                     flavor = optionSelection(flavorsArr, selectedFlavorNum);
+                                    if (flavor.equals("")) {
+                                        System.out.println("\nERROR: Not a valid option number.\n");
+                                        break;
+                                    }
+                                    
                                     System.out.println("\nYou selected the \"" + flavor + "\".\n");
                                 
-                                Drink drink = new Drink(drinkSize, flavor);
+                                Product drink = new Drink(drinkSize, flavor);
                                 System.out.println(drink);
                                 
                                 order.add(drink);
@@ -314,17 +324,22 @@ public class UserInterface {
                                     int selectedChipTypeNum = scanner.nextInt();
                                     
                                     chipType = optionSelection(chipTypeArr, selectedChipTypeNum);
-        
+                                    if (chipType.equals("")) {
+                                        System.out.println("\nERROR: Not a valid option number.\n");
+                                        break;
+                                    }
+                                    
                                     System.out.println("\nYou selected \"" + chipType + "\"\n");
                                 
-                                Chip chip = new Chip(chipType);
+                                Product chip = new Chip(chipType);
                                 System.out.println(chip);
                                 
                                 order.add(chip);
                                 break;
                             case 4:
                                 System.out.println("\n~You chose the Checkout option~\n");
-                                // • Checkout - display the order details and the price
+                                
+                                order.checkout();
                                 
                                     // - Confirm - create the receipt file and go back to the home screen
                                 System.out.println("1) Confirm");
