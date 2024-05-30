@@ -87,7 +87,7 @@ public class UserInterface {
                                 
                                     // - Select your bread:
                                 System.out.println("Select your bread:");
-                                displaySandwichOptions(breadTypesArr);
+                                displaySandwichOptions(breadTypesArr, "bread type");
     
                                 System.out.println("Enter your selection here:");
                                 int breadSelection = scanner.nextInt();
@@ -101,7 +101,7 @@ public class UserInterface {
     
                                     // - Sandwich size:
                                 System.out.println("Select a sandwich size:");
-                                displaySandwichOptions(sandwichSizesArr);
+                                displaySandwichOptions(sandwichSizesArr, "sandwich size");
     
                                 System.out.println("Enter your selection here:");
                                 int sandwichSizeSelection = scanner.nextInt();
@@ -116,7 +116,7 @@ public class UserInterface {
                                 System.out.println("Next, we have your toppings!\n");
                                 System.out.println("Select a meat:");
                                 
-                                displaySandwichOptions(meatsArr);
+                                displaySandwichOptions(meatsArr, "meat");
     
                                 System.out.println("Enter your selection here:");
                                 int meatSelection = scanner.nextInt();
@@ -137,7 +137,7 @@ public class UserInterface {
                                         // ■ Cheese:
                                             // display list of available cheeses
                                 System.out.println("Select a cheese:");
-                                displaySandwichOptions(cheesesArr);
+                                displaySandwichOptions(cheesesArr, "cheese");
     
                                 System.out.println("Enter your selection here:");
                                 int cheeseSelection = scanner.nextInt();
@@ -158,9 +158,9 @@ public class UserInterface {
                                         // ■ Other toppings:
                                             // display list of additional toppings (these are FREE)
                                 System.out.println("Select additional toppings:");
-                                displaySandwichOptions(additionalToppingsArr);
+                                displaySandwichOptions(additionalToppingsArr, "additional topping");
                                 
-                                additionalToppings = sandwichMultiOptionSelection(additionalToppingsArr, additionalToppings, "additional topping");
+                                additionalToppings = sandwichMultiOptionSelection(additionalToppingsArr, "additional topping");
     
                                 System.out.println();
                                 for (String topping : additionalToppings) {
@@ -268,36 +268,52 @@ public class UserInterface {
     
     }
     
-    public static void displaySandwichOptions(String[] optionsArr) {
+    public static void displaySandwichOptions(String[] optionsArr, String optionsType) {
+        String lastElement = optionsArr[optionsArr.length - 1];
+    
         for (int i = 0; i < optionsArr.length; i++) {
-            System.out.println("\t" + (i+1) + ") " + optionsArr[i]);
+            if (
+                    (optionsType.equalsIgnoreCase("additional topping")
+                    || optionsType.equalsIgnoreCase("sauce")
+                    || optionsType.equalsIgnoreCase("side"))
+                    && optionsArr[i].equalsIgnoreCase(lastElement)
+            ) {
+                System.out.println(
+                        "\t" + (i + 1) + ") " + optionsArr[i] +
+                                " (Selecting this option will remove all previous add-ons)"
+                );
+            } else {
+                System.out.println("\t" + (i + 1) + ") " + optionsArr[i]);
+            }
         }
         System.out.println();
     }
     
-    public static void displayNewSandwichOptions(String[] optionsArr, ArrayList<String> addedOptions, int selection) {
-        ArrayList<String> allOptions = new ArrayList<>();
-    
-        for (int i = 0; i < optionsArr.length; i++) {
-            allOptions.add(optionsArr[i]);
-        }
-        
+    public static void displayNewSandwichOptions(ArrayList<String> allOptions, int selection) {
         Iterator<String> iterator = allOptions.iterator();
+        String lastElement = allOptions.get(allOptions.size() - 1);
+        String selectedElement = allOptions.get(selection-1);
         
-        for (int i = 0; i < addedOptions.size(); i++) {
+        
             while (iterator.hasNext()) {
                 String option = iterator.next();
                 if (
-                        !option.equalsIgnoreCase(allOptions.get(allOptions.size()-1)) &&
-                                option.equalsIgnoreCase(addedOptions.get(i))
+                        !option.equalsIgnoreCase(lastElement) &&
+                                option.equalsIgnoreCase(selectedElement)
                 ) {
                     iterator.remove();
                 }
             }
-        }
     
         for (int i = 0; i < allOptions.size(); i++) {
-            System.out.println("\t" + (i+1) + ") " + allOptions.get(i));
+            if (!allOptions.get(i).equalsIgnoreCase(lastElement)) {
+                System.out.println("\t" + (i+1) + ") " + allOptions.get(i));
+            } else {
+                System.out.println(
+                        "\t" + (i + 1) + ") " + allOptions.get(i) +
+                                " (Selecting this option will remove all previous add-ons)"
+                );
+            }
         }
         
         System.out.println();
@@ -317,20 +333,46 @@ public class UserInterface {
         return optionItem;
     }
     
-    public static ArrayList<String> sandwichMultiOptionSelection(String[] optionsArr, ArrayList<String> toppingItems, String toppingType) {
+    public static String sandwichOptionSelection(ArrayList<String> options, int selection) {
+        String optionItem = "";
+        
+        for (int i = 1; i < options.size(); i++) {
+            if (selection == 1) {
+                optionItem = options.get(0);
+            } else if (selection == i+1) {
+                optionItem = options.get(i);
+            }
+        }
+        
+        return optionItem;
+    }
+    
+    public static ArrayList<String> sandwichMultiOptionSelection(String[] optionsArr, String toppingType) {
+        ArrayList<String> toppingItems = new ArrayList<>();
+        ArrayList<String> allOptions = new ArrayList<>();
         boolean wantsMoreTopping = false;
         boolean duplicateToppings = false;
+        int toppingsSelectionNum = 0;
         int optionNumChoice = 0;
         int count = 0;
         String toppingItem = "";
+    
+        for (int i = 0; i < optionsArr.length; i++) {
+            allOptions.add(optionsArr[i]);
+        }
+        String lastElement = allOptions.get(allOptions.size()-1);
         
         do {
+            if (count > 0 && toppingsSelectionNum < allOptions.size()+1) {
+                displayNewSandwichOptions(allOptions, toppingsSelectionNum);
+            }
+            
             System.out.println("Enter your selection here:");
-            int toppingsSelectionNum = scanner.nextInt();
+            toppingsSelectionNum = scanner.nextInt();
     
-            toppingItem = sandwichOptionSelection(optionsArr, toppingsSelectionNum);
+            toppingItem = sandwichOptionSelection(allOptions, toppingsSelectionNum);
     
-            if (toppingsSelectionNum < optionsArr.length+1) {
+            if (toppingsSelectionNum < allOptions.size()+1 && !toppingItem.equalsIgnoreCase(lastElement)) {
                 
                 for (int i = 0; i < toppingItems.size(); i++) {
                     if (toppingItem.equalsIgnoreCase(toppingItems.get(i))) {
@@ -345,9 +387,14 @@ public class UserInterface {
                     toppingItems.add(toppingItem);
                     ++count;
                 }
-                
+            } else if (toppingItem.equalsIgnoreCase(lastElement)) {
+                toppingItems.clear();
+                toppingItems.add(toppingItem);
+                System.out.println("\n\tYou selected the \"" + toppingItem + "\" option\n");
+                break;
             } else {
-                System.out.println("\nERROR: Must type the corresponding number of the options listed! (e.g. 1)\n");
+                System.out.println("\nERROR: Must type a number that corresponds with an option listed! (e.g. 1)\n");
+                continue;
             }
             
             do {
@@ -366,11 +413,7 @@ public class UserInterface {
                         break;
                 }
             } while(optionNumChoice != 1 && optionNumChoice != 0);
-        } while (
-                wantsMoreTopping &&
-                        count < optionsArr.length-1 &&
-                        !toppingItem.equalsIgnoreCase(optionsArr[optionsArr.length-1])
-        );
+        } while (wantsMoreTopping && count < optionsArr.length-1);
         
         if (count == optionsArr.length-1) {
             System.out.println("\n\tYou cannot add another " + toppingType + " as there are only " + (optionsArr.length-1) + " available.\n");
