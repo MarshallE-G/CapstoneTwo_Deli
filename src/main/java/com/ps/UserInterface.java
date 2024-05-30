@@ -123,13 +123,15 @@ public class UserInterface {
                                 String meat = sandwichOptionSelection(meatsArr, meatSelection);
 
                                 if (!meat.equals("") && !meat.equalsIgnoreCase("no meat")) {
-                                    System.out.println("You selected: " + meat);
+                                    System.out.println("\nYou selected: " + meat + "\n");
                                     hasMeat = true;
                                 } else if (meat.equals("")) {
                                     System.out.println("This meat is not available.");
                                     break;
                                 }
                                 extraMeat = processExtraToppingInquiry(hasMeat, "meat");
+    
+                                System.out.println("\nExtra meat? " + extraMeat);
                                 
                                         // ■ Cheese:
                                             // display list of available cheeses
@@ -142,24 +144,28 @@ public class UserInterface {
                                 String cheese = sandwichOptionSelection(cheesesArr, cheeseSelection);
     
                                 if (!cheese.equals("") && !cheese.equalsIgnoreCase("no cheese")) {
-                                    System.out.println("You selected: " + meat);
+                                    System.out.println("\nYou selected: " + cheese + "\n");
                                     hasCheese = true;
                                 } else if (cheese.equals("")) {
                                     System.out.println("This cheese is not available.");
                                     break;
                                 }
                                 extraCheese = processExtraToppingInquiry(hasCheese, "cheese");
+    
+                                System.out.println("\nExtra cheese? " + extraCheese + "\n");
                                 
                                         // ■ Other toppings:
                                             // display list of additional toppings (these are FREE)
                                 System.out.println("Select additional toppings:");
                                 displaySandwichOptions(additionalToppingsArr);
                                 
-                                            // ----> for or do-while loop (for multiple toppings)
-                                            // add all toppings to additionalToppings ArrayList
-                                System.out.println("Enter your selection here:");
-                                int additionalToppingsSelection = scanner.nextInt();
-                                
+                                additionalToppings = sandwichMultiOptionSelection(additionalToppingsArr, additionalToppings, "additional topping");
+    
+                                System.out.println();
+                                for (String topping : additionalToppings) {
+                                    System.out.println(topping);
+                                }
+                                System.out.println();
                                 
                                             // if there's additional toppings...
                                 System.out.println("Would you like extra additional toppings? (Y/N)");
@@ -287,12 +293,13 @@ public class UserInterface {
         boolean duplicateToppings = false;
         int optionNumChoice = 0;
         int count = 0;
+        String toppingItem = "";
         
         do {
             System.out.println("Enter your selection here:");
             int toppingsSelectionNum = scanner.nextInt();
     
-            String toppingItem = sandwichOptionSelection(options, toppingsSelectionNum);
+            toppingItem = sandwichOptionSelection(options, toppingsSelectionNum);
     
             if (toppingsSelectionNum < options.length+1) {
                 
@@ -301,6 +308,8 @@ public class UserInterface {
                         duplicateToppings = true;
                         System.out.println("\nYou have already added this " + toppingType + "!\n");
                         break;
+                    } else {
+                        duplicateToppings = false;
                     }
                 }
                 if (!duplicateToppings) {
@@ -321,16 +330,21 @@ public class UserInterface {
                         wantsMoreTopping = true;
                         break;
                     case 0:
+                        wantsMoreTopping = false;
                         break;
                     default:
                         System.out.println("\nERROR: Must type 1 or 0!\n");
                         break;
                 }
             } while(optionNumChoice != 1 && optionNumChoice != 0);
-        } while (!wantsMoreTopping && count < options.length);
+        } while (
+                wantsMoreTopping &&
+                        count < options.length-1 &&
+                        !toppingItem.equalsIgnoreCase(options[options.length-1])
+        );
         
-        if (count == options.length) {
-            System.out.println("\n\tThere are only " + options.length + " " + toppingType + "s available.\n");
+        if (count == options.length-1) {
+            System.out.println("\n\tYou cannot add another " + toppingType + " as there are only " + (options.length-1) + " available.\n");
         }
         
         return toppingItems;
