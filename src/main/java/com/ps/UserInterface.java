@@ -202,7 +202,7 @@ public class UserInterface {
                                     if (!sides.get(0).equalsIgnoreCase("no side")) {
                                         hasSides = true;
                                     }
-                                    extraSides = processExtraToppingInquiry(hasSides, "side");
+                                    extraSides = processExtraToppingInquiry(hasSides, "side(s)");
                                     
                                     
                                     
@@ -225,7 +225,7 @@ public class UserInterface {
                                     }
                                 } while (selectedOptionNum != 1 && selectedOptionNum != 0);
                                 
-                                Product sandwich = new Sandwich(
+                                Sandwich sandwich = new Sandwich(
                                         breadType,
                                         sandwichSize,
                                         meat,
@@ -288,7 +288,7 @@ public class UserInterface {
                                     
                                     System.out.println("\nYou selected the \"" + flavor + "\".\n");
                                 
-                                Product drink = new Drink(drinkSize, flavor);
+                                Drink drink = new Drink(drinkSize, flavor);
                                 System.out.println(drink);
                                 
                                 order.add(drink);
@@ -296,8 +296,8 @@ public class UserInterface {
                             case 3:
                                 String[] chipTypeArr = {
                                         "flamin' hot cheetos (crunchy)", "flamin' hot cheetos (puffy)", "red doritos",
-                                        "blue doritos", "potato chips", "bbq chips", "cheddar cheese",
-                                        "sour cream & onion", "salt & vinegar", "takis", "hot fries"
+                                        "blue doritos", "potato chips", "bbq chips", "cheddar cheese chips",
+                                        "sour cream & onion chips", "salt & vinegar chips", "takis", "hot fries"
                                 };
                                 String chipType;
                                 
@@ -318,41 +318,47 @@ public class UserInterface {
                                     
                                     System.out.println("\nYou selected \"" + chipType + "\"\n");
                                 
-                                Product chip = new Chip(chipType);
+                                Chip chip = new Chip(chipType);
                                 System.out.println(chip);
                                 
                                 order.add(chip);
                                 break;
                             case 4:
-                                System.out.println("\n~You chose the Checkout option~\n");
+                                if (!order.getProducts().isEmpty()) {
+                                    System.out.println("\n~You chose the Checkout option~\n");
     
-                                int selectedCheckoutOptionNum = 0;
-                                do {
-                                    order.checkout();
-                                    
-                                    System.out.println("\nPlease select an option:");
-                                    System.out.println("1) Confirm");
-                                    System.out.println("0) Cancel");
-    
-                                    System.out.println("\nEnter your selection here:");
-                                    selectedCheckoutOptionNum = scanner.nextInt();
-    
-                                    switch (selectedCheckoutOptionNum) {
-                                        case 1:
-                                            System.out.println("\n~~You have confirmed your order!~~");
-                                            FileManager.saveReceipt(order);
-                                            orderMenuCommand = 0;
-                                            break;
-                                        case 0:
-                                            System.out.println("\n~~You have canceled the order!~~");
-                                            order.clear();
-                                            orderMenuCommand = 0;
-                                            break;
-                                        default:
-                                            System.out.println("\nERROR: Not a valid option number. Must type 1 or 0!\n");
-                                            break;
-                                    }
-                                } while (selectedCheckoutOptionNum != 1 && selectedCheckoutOptionNum != 0);
+                                    int selectedCheckoutOptionNum = 0;
+                                    do {
+                                        order.checkout();
+        
+                                        System.out.println("\nPlease select an option:");
+                                        System.out.println("1) Confirm");
+                                        System.out.println("0) Cancel");
+        
+                                        System.out.println("\nEnter your selection here:");
+                                        selectedCheckoutOptionNum = scanner.nextInt();
+        
+                                        switch (selectedCheckoutOptionNum) {
+                                            case 1:
+                                                System.out.println("\n~~You have confirmed your order!~~");
+                                                FileManager.saveReceipt(order);
+                                                order.clear();
+                                                orderMenuCommand = 0;
+                                                break;
+                                            case 0:
+                                                System.out.println("\n~~You have canceled the order!~~");
+                                                order.clear();
+                                                orderMenuCommand = 0;
+                                                break;
+                                            default:
+                                                System.out.println("\nERROR: Not a valid option number. Must type 1 or 0!\n");
+                                                break;
+                                        }
+                                    } while (selectedCheckoutOptionNum != 1 && selectedCheckoutOptionNum != 0);
+                                } else {
+                                    System.out.println("\nYou must add items to your order before checking out!!\n");
+                                    break;
+                                }
                             case 0:
                                 System.out.println("\nReturning to Home Menu...\n");
                                 break;
@@ -557,7 +563,7 @@ public class UserInterface {
         int optionNumChoice = 0;
         do {
             if (hasTopping) {
-                System.out.println("Would you like extra " + toppingType + "? (Type 1 for \"Yes\" / Type 0 for \"No\")");
+                System.out.println("Would you like (an) extra " + toppingType + "? (Type 1 for \"Yes\" / Type 0 for \"No\")");
                 optionNumChoice = scanner.nextInt();
                 
                 switch (optionNumChoice) {

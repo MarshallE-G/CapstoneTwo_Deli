@@ -304,44 +304,44 @@ public class Sandwich extends Product {
         double price = this.calcPrice();
 
         String selectedAddOns =
-                "Sandwich:" +
-                "\n- Bread: " + this.breadType +
-                "\n- Size: " + this.sandwichSize +
-                "\n- Meat: " + this.meat +
-                "\n- Cheese: " + this.cheese +
-                "\n- Additional toppings:";
+                "\u001b[1mSandwich:\u001b[22m" +
+                "\n• Bread: " + this.breadType +
+                "\n• Size: " + this.sandwichSize +
+                "\n• Meat: " + this.meat +
+                "\n• Cheese: " + this.cheese +
+                "\n• Additional toppings:";
         selectedAddOns = listToString(this.additionalToppings, selectedAddOns);
     
-        selectedAddOns += "\n- Sauces:";
+        selectedAddOns += "\n• Sauces:";
         selectedAddOns = listToString(this.sauces, selectedAddOns);
     
-        selectedAddOns += "\n- Sides:";
+        selectedAddOns += "\n• Sides:";
         selectedAddOns = listToString(this.sides, selectedAddOns);
 
         if (this.extraMeat) {
-            selectedAddOns += "\n- Extra Meat!";
+            selectedAddOns += "\n• Extra Meat!";
         }
         if (this.extraCheese) {
-            selectedAddOns += "\n- Extra Cheese!";
+            selectedAddOns += "\n• Extra Cheese!";
         }
         if (this.extraToppings) {
-            selectedAddOns += "\n- Extra Toppings!";
+            selectedAddOns += "\n• Extra Toppings!";
         }
         if (this.extraSauces) {
-            selectedAddOns += "\n- Extra sauces!";
+            selectedAddOns += "\n• Extra sauces!";
         }
         if (this.extraSides) {
-            selectedAddOns += "\n- Extra sides!";
+            selectedAddOns += "\n• Extra sides!";
         }
         
         if (this.isToasted) {
-            selectedAddOns += "\n- NOT toasted!";
+            selectedAddOns += "\n• NOT toasted!";
         } else {
-            selectedAddOns += "\n- Toasted!";
+            selectedAddOns += "\n• Toasted!";
         }
 
         selectedAddOns +=
-                "\nPrice: $" + price +
+                "\n\u001b[3mPrice: $" + price + "\u001b[23m" +
                 "\n";
 
         return selectedAddOns;

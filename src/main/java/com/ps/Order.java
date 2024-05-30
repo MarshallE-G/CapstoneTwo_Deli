@@ -24,12 +24,12 @@ public class Order implements Chargeable{
     public void checkout() {
         double orderPrice = this.calcPrice();
     
-        System.out.println("Your Order details:");
+        System.out.println("Your Order details:\n");
         for (Product product : this.products) {
             System.out.println(product);
         }
     
-        System.out.printf("Total price: $%.2f\n", orderPrice);
+        System.out.printf("\u001b[1;4mTotal price:\u001b[24m $%.2f\u001b[22m\n", orderPrice);
     }
     
     @Override

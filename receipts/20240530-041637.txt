@@ -1,0 +1,5 @@
+SANDWICH|wrap|4"|chicken|swiss|tomatoes, lettuce, guacamole, onions, pickles|mayo, thousand islands, ketchup|au jus|extra meat|extra cheese|extra topping(s)|extra sauce(s)|extra side(s)|NOT toasted|$8.05
+DRINK|medium|root beer|$2.50
+CHIP|hot fries|$1.50
+
+Total Price: $12.05
