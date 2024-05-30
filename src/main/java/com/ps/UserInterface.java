@@ -37,6 +37,8 @@ public class UserInterface {
                     int orderMenuCommand;
                     
                     do {
+                        Order order = new Order();
+                        
                         // • Order Screen - All entries should show the newest entries first
                         System.out.println("\nOrder Menu\n");
                         
@@ -61,20 +63,20 @@ public class UserInterface {
                                 };
                                 String[] saucesArr = {"mayo", "mustard", "ketchup", "ranch", "thousand islands", "vinaigrette", "no sauce"};
                                 String[] sidesArr = {"au jus", "sauce", "no side"};
-                                ArrayList<String> additionalToppings = new ArrayList<>();
-                                ArrayList<String> sauces = new ArrayList<>();
-                                ArrayList<String> sides = new ArrayList<>();
+                                ArrayList<String> additionalToppings;
+                                ArrayList<String> sauces;
+                                ArrayList<String> sides;
 //                                HashMap<String[], String> toppingsTypeHashMap = new HashMap<>();
                                 boolean hasMeat = false;
                                 boolean hasCheese = false;
                                 boolean hasOtherToppings = false;
                                 boolean hasSauces = false;
                                 boolean hasSides = false;
-                                boolean extraMeat = false;
-                                boolean extraCheese = false;
-                                boolean extraToppings = false;
-                                boolean extraSauces = false;
-                                boolean extraSides = false;
+                                boolean extraMeat;
+                                boolean extraCheese;
+                                boolean extraToppings;
+                                boolean extraSauces;
+                                boolean extraSides;
                                 boolean isToasted = false;
 //                                toppingsTypeHashMap.put(meatsArr, "meat");
 //                                toppingsTypeHashMap.put(cheesesArr, "cheese");
@@ -230,9 +232,25 @@ public class UserInterface {
                                 } while (optionNumChoice != 1 && optionNumChoice != 0);
                                 System.out.println("\nSandwich is toasted? " + isToasted + "\n");
                                 
-                                Sandwich sandwich = new Sandwich();
+                                Sandwich sandwich = new Sandwich(
+                                        breadType,
+                                        sandwichSize,
+                                        meat,
+                                        cheese,
+                                        extraMeat,
+                                        extraCheese,
+                                        additionalToppings,
+                                        extraToppings,
+                                        sauces,
+                                        extraSauces,
+                                        sides,
+                                        extraSides,
+                                        isToasted
+                                );
+    
+                                System.out.println(sandwich);
                                 
-                                
+                                order.add(sandwich);
                                 break;
                             case 2:
                                 System.out.println("\n~You chose the Add Drink option~\n");
@@ -274,6 +292,7 @@ public class UserInterface {
                                 
                                         // if cancel...
                                             // remove order
+                                order.clear();
                                 System.out.println("~~You have canceled the order!~~");
 //                                orderMenuCommand = 0;
                             case 0:
@@ -452,7 +471,7 @@ public class UserInterface {
             } while(optionNumChoice != 1 && optionNumChoice != 0);
         } while (wantsMoreTopping && count < optionsArr.length-1);
         
-        if (count == optionsArr.length-1) {
+        if (count == optionsArr.length-1 && (wantsMoreTopping)) {
             System.out.println("\n\tYou cannot add another " + toppingType + " as there are only " + (optionsArr.length-1) + " available.\n");
         }
         

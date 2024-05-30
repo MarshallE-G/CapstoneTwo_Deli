@@ -20,6 +20,10 @@ public class Order implements Chargeable{
         this.products.add(product);
     }
     
+    public void clear() {
+        this.products.clear();
+    }
+    
     // checkout() : void (calculates order price and displays order details)
     public void checkout() {
         double orderPrice = this.calcPrice();

@@ -26,7 +26,7 @@ public class Sandwich extends Product {
     private ArrayList<String> sides;
     private boolean           hasSides;
     private boolean           extraSides;
-    private boolean           toasted;
+    private boolean           isToasted;
     
     public Sandwich(
             String breadType,
@@ -41,7 +41,7 @@ public class Sandwich extends Product {
             boolean extraSauces,
             ArrayList<String> sides,
             boolean extraSides,
-            boolean toasted) {
+            boolean isToasted) {
         super();
         this.breadType = breadType;
         this.sandwichSize = sandwichSize;
@@ -60,7 +60,7 @@ public class Sandwich extends Product {
         this.sides = sides;
         this.hasSides = this.has(this.sides);
         this.extraSides = extraSides;
-        this.toasted = toasted;
+        this.isToasted = isToasted;
     }
     
     @Override
@@ -272,11 +272,11 @@ public class Sandwich extends Product {
     }
     
     public boolean isToasted() {
-        return this.toasted;
+        return this.isToasted;
     }
     
-    public void setToasted(boolean toasted) {
-        this.toasted = toasted;
+    public void setToasted(boolean isToasted) {
+        this.isToasted = isToasted;
     }
     
     public String listToString(List<String> list) {
@@ -320,7 +320,7 @@ public class Sandwich extends Product {
 //        }
 //
 //        selectedAddOns +=
-//                ", toasted=" + toasted +
+//                ", toasted=" + isToasted +
 //                "\nprice= " + price +
 //                '}';
 //
@@ -355,7 +355,7 @@ public class Sandwich extends Product {
                 ", sides='" + sidesStr + '\'' +
                 ", hasSides=" + hasSides +
                 ", extraSides=" + extraSides +
-                ", toasted=" + toasted +
+                ", toasted=" + isToasted +
                 "\nprice= " + price +
                 '}';
     }
