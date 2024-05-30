@@ -343,6 +343,7 @@ public class UserInterface {
                                 
                                     // - Confirm - create the receipt file and go back to the home screen
                                 System.out.println("1) Confirm");
+                                FileManager.saveReceipt(order);
                                 
                                     // - Cancel - delete order and go back to the home screen
                                 System.out.println("0) Cancel");

@@ -12,18 +12,17 @@ public class Sandwich extends Product {
     private String            sandwichSize;
     private String            meat;
     private String            cheese;
-    private boolean           hasMeat;
-    private boolean           hasCheese;
-    private boolean           extraMeat;
-    private boolean           extraCheese;
-    private ArrayList<String> additionalToppings; // ■ Other toppings:      <--------- These are FREE!!!
-    private boolean           hasOtherToppings;
-
-    private boolean           extraToppings;
+    private ArrayList<String> additionalToppings;
     private ArrayList<String> sauces;
+    private ArrayList<String> sides;
+    private boolean           hasMeat;
+    private boolean           extraMeat;
+    private boolean           hasCheese;
+    private boolean           extraCheese;
+    private boolean           hasOtherToppings;
+    private boolean           extraToppings;
     private boolean           hasSauces;
     private boolean           extraSauces;
-    private ArrayList<String> sides;
     private boolean           hasSides;
     private boolean           extraSides;
     private boolean           isToasted;
@@ -47,17 +46,17 @@ public class Sandwich extends Product {
         this.sandwichSize = sandwichSize;
         this.meat = meat;
         this.cheese = cheese;
-        this.hasMeat = this.has(this.meat);
-        this.hasCheese = this.has(this.cheese);
-        this.extraMeat = extraMeat;
-        this.extraCheese = extraCheese;
         this.additionalToppings = additionalToppings;
+        this.sauces = sauces;
+        this.sides = sides;
+        this.hasMeat = this.has(this.meat);
+        this.extraMeat = extraMeat;
+        this.hasCheese = this.has(this.cheese);
+        this.extraCheese = extraCheese;
         this.hasOtherToppings = this.has(this.additionalToppings);
         this.extraToppings = extraToppings;
-        this.sauces = sauces;
         this.hasSauces = this.has(this.sauces);
         this.extraSauces = extraSauces;
-        this.sides = sides;
         this.hasSides = this.has(this.sides);
         this.extraSides = extraSides;
         this.isToasted = isToasted;
@@ -167,20 +166,36 @@ public class Sandwich extends Product {
         this.cheese = cheese;
     }
     
+    public ArrayList<String> getAdditionalToppings() {
+        return additionalToppings;
+    }
+    
+    public void setAdditionalToppings(ArrayList<String> additionalToppings) {
+        this.additionalToppings = additionalToppings;
+    }
+    
+    public ArrayList<String> getSauces() {
+        return sauces;
+    }
+    
+    public void setSauces(ArrayList<String> sauce) {
+        this.sauces = sauce;
+    }
+    
+    public ArrayList<String> getSides() {
+        return sides;
+    }
+    
+    public void setSides(ArrayList<String> sides) {
+        this.sides = sides;
+    }
+    
     public boolean hasMeat() {
         return hasMeat;
     }
     
     public void setHasMeat(boolean hasMeat) {
         this.hasMeat = hasMeat;
-    }
-    
-    public boolean hasCheese() {
-        return hasCheese;
-    }
-    
-    public void setHasCheese(boolean hasCheese) {
-        this.hasCheese = hasCheese;
     }
     
     public boolean hasExtraMeat() {
@@ -191,20 +206,20 @@ public class Sandwich extends Product {
         this.extraMeat = extraMeat;
     }
     
+    public boolean hasCheese() {
+        return hasCheese;
+    }
+    
+    public void setHasCheese(boolean hasCheese) {
+        this.hasCheese = hasCheese;
+    }
+    
     public boolean hasExtraCheese() {
         return this.extraCheese;
     }
     
     public void setExtraCheese(boolean extraCheese) {
         this.extraCheese = extraCheese;
-    }
-    
-    public ArrayList<String> getAdditionalToppings() {
-        return additionalToppings;
-    }
-    
-    public void setAdditionalToppings(ArrayList<String> additionalToppings) {
-        this.additionalToppings = additionalToppings;
     }
     
     public boolean hasOtherToppings() {
@@ -223,14 +238,6 @@ public class Sandwich extends Product {
         this.extraToppings = extraToppings;
     }
     
-    public ArrayList<String> getSauces() {
-        return sauces;
-    }
-    
-    public void setSauces(ArrayList<String> sauce) {
-        this.sauces = sauce;
-    }
-    
     public boolean hasSauces() {
         return hasSauces;
     }
@@ -245,14 +252,6 @@ public class Sandwich extends Product {
     
     public void setExtraSauces(boolean extraSauces) {
         this.extraSauces = extraSauces;
-    }
-    
-    public ArrayList<String> getSides() {
-        return sides;
-    }
-    
-    public void setSides(ArrayList<String> sides) {
-        this.sides = sides;
     }
     
     public boolean hasSides() {
@@ -282,7 +281,12 @@ public class Sandwich extends Product {
     public String listToString(List<String> list) {
         String listStr = "";
         for (int i = 0; i < list.size(); i++) {
-            listStr += " " + list.get(i);
+            if (i == 0) {
+                listStr += list.get(i);
+            } else {
+                listStr += ", " + list.get(i);
+            }
+            
         }
         
         return listStr;
@@ -334,7 +338,6 @@ public class Sandwich extends Product {
         String sidesStr = listToString(this.sides);
         double price = this.calcPrice();
         
-        // Make sure to not add an extra space BEFORE additionalToppingsStr!
 //        String sandwichStr = this.createStrBasedOnAddOns();
 //        return sandwichStr;
         return "Sandwich{" +
@@ -346,13 +349,13 @@ public class Sandwich extends Product {
                 ", hasCheese=" + hasCheese +
                 ", extraMeat=" + extraMeat +
                 ", extraCheese=" + extraCheese +
-                ", additionalToppings='" + additionalToppingsStr + '\'' +
+                ", additionalToppings= '" + additionalToppingsStr + '\'' +
                 ", hasOtherToppings=" + hasOtherToppings +
                 ", extraToppings=" + extraToppings +
-                ", sauces='" + saucesStr + '\'' +
+                ", sauces= '" + saucesStr + '\'' +
                 ", hasSauces=" + hasSauces +
                 ", extraSauces=" + extraSauces +
-                ", sides='" + sidesStr + '\'' +
+                ", sides= '" + sidesStr + '\'' +
                 ", hasSides=" + hasSides +
                 ", extraSides=" + extraSides +
                 ", toasted=" + isToasted +
