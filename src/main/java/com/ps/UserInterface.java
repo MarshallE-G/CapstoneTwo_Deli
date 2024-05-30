@@ -75,6 +75,7 @@ public class UserInterface {
                                 boolean extraToppings = false;
                                 boolean extraSauces = false;
                                 boolean extraSides = false;
+                                boolean isToasted = false;
 //                                toppingsTypeHashMap.put(meatsArr, "meat");
 //                                toppingsTypeHashMap.put(cheesesArr, "cheese");
 //                                toppingsTypeHashMap.put(additionalToppingsArr, "additional toppings");
@@ -85,116 +86,152 @@ public class UserInterface {
                                    several options to create the sandwich*/
                                 System.out.println("\n~You chose the Add Sandwich option~\n");
                                 
-                                    // - Select your bread:
                                 System.out.println("Select your bread:");
-                                displaySandwichOptions(breadTypesArr, "bread type");
+                                    displaySandwichOptions(breadTypesArr, "bread type");
+        
+                                    System.out.println("Enter your selection here:");
+                                    int breadSelection = scanner.nextInt();
+                                    
+                                    String breadType = sandwichOptionSelection(breadTypesArr, breadSelection);
+                                    
+                                    if (breadType.equals("")) {
+                                        System.out.println("That bread is not available at our store.\n");
+                                        break;
+                                    }
     
-                                System.out.println("Enter your selection here:");
-                                int breadSelection = scanner.nextInt();
-                                
-                                String breadType = sandwichOptionSelection(breadTypesArr, breadSelection);
-                                
-                                if (breadType.equals("")) {
-                                    System.out.println("That bread is not available at our store.\n");
-                                    break;
-                                }
-    
-                                    // - Sandwich size:
                                 System.out.println("Select a sandwich size:");
-                                displaySandwichOptions(sandwichSizesArr, "sandwich size");
-    
-                                System.out.println("Enter your selection here:");
-                                int sandwichSizeSelection = scanner.nextInt();
-                                
-                                String sandwichSize = sandwichOptionSelection(sandwichSizesArr, sandwichSizeSelection);
-                                
-                                if (sandwichSize.equals("")) {
-                                    System.out.println("Sandwiches do not come in this size.\n");
-                                    break;
-                                }
+                                    displaySandwichOptions(sandwichSizesArr, "sandwich size");
+        
+                                    System.out.println("Enter your selection here:");
+                                    int sandwichSizeSelection = scanner.nextInt();
+                                    
+                                    String sandwichSize = sandwichOptionSelection(sandwichSizesArr, sandwichSizeSelection);
+                                    
+                                    if (sandwichSize.equals("")) {
+                                        System.out.println("Sandwiches do not come in this size.\n");
+                                        break;
+                                    }
                                 
                                 System.out.println("Next, we have your toppings!\n");
+                                
                                 System.out.println("Select a meat:");
-                                
-                                displaySandwichOptions(meatsArr, "meat");
+                                    displaySandwichOptions(meatsArr, "meat");
+        
+                                    System.out.println("Enter your selection here:");
+                                    int meatSelection = scanner.nextInt();
+                                    
+                                    String meat = sandwichOptionSelection(meatsArr, meatSelection);
     
-                                System.out.println("Enter your selection here:");
-                                int meatSelection = scanner.nextInt();
+                                    if (!meat.equals("") && !meat.equalsIgnoreCase("no meat")) {
+                                        System.out.println("\nYou selected: " + meat + "\n");
+                                        hasMeat = true;
+                                    } else if (meat.equals("")) {
+                                        System.out.println("This meat is not available.");
+                                        break;
+                                    }
+                                    extraMeat = processExtraToppingInquiry(hasMeat, "meat");
+        
+                                    System.out.println("\nExtra meat? " + extraMeat);
                                 
-                                String meat = sandwichOptionSelection(meatsArr, meatSelection);
-
-                                if (!meat.equals("") && !meat.equalsIgnoreCase("no meat")) {
-                                    System.out.println("\nYou selected: " + meat + "\n");
-                                    hasMeat = true;
-                                } else if (meat.equals("")) {
-                                    System.out.println("This meat is not available.");
-                                    break;
-                                }
-                                extraMeat = processExtraToppingInquiry(hasMeat, "meat");
-    
-                                System.out.println("\nExtra meat? " + extraMeat);
-                                
-                                        // ■ Cheese:
-                                            // display list of available cheeses
                                 System.out.println("Select a cheese:");
-                                displaySandwichOptions(cheesesArr, "cheese");
-    
-                                System.out.println("Enter your selection here:");
-                                int cheeseSelection = scanner.nextInt();
-    
-                                String cheese = sandwichOptionSelection(cheesesArr, cheeseSelection);
-    
-                                if (!cheese.equals("") && !cheese.equalsIgnoreCase("no cheese")) {
-                                    System.out.println("\nYou selected: " + cheese + "\n");
-                                    hasCheese = true;
-                                } else if (cheese.equals("")) {
-                                    System.out.println("This cheese is not available.");
-                                    break;
-                                }
-                                extraCheese = processExtraToppingInquiry(hasCheese, "cheese");
-    
-                                System.out.println("\nExtra cheese? " + extraCheese + "\n");
+                                    displaySandwichOptions(cheesesArr, "cheese");
+        
+                                    System.out.println("Enter your selection here:");
+                                    int cheeseSelection = scanner.nextInt();
+        
+                                    String cheese = sandwichOptionSelection(cheesesArr, cheeseSelection);
+        
+                                    if (!cheese.equals("") && !cheese.equalsIgnoreCase("no cheese")) {
+                                        System.out.println("\nYou selected: " + cheese + "\n");
+                                        hasCheese = true;
+                                    } else if (cheese.equals("")) {
+                                        System.out.println("This cheese is not available.");
+                                        break;
+                                    }
+                                    extraCheese = processExtraToppingInquiry(hasCheese, "cheese");
+        
+                                    System.out.println("\nExtra cheese? " + extraCheese + "\n");
                                 
-                                        // ■ Other toppings:
-                                            // display list of additional toppings (these are FREE)
+                                
                                 System.out.println("Select additional toppings:");
-                                displaySandwichOptions(additionalToppingsArr, "additional topping");
-                                
-                                additionalToppings = sandwichMultiOptionSelection(additionalToppingsArr, "additional topping");
-    
-                                System.out.println();
-                                for (String topping : additionalToppings) {
-                                    System.out.println(topping);
-                                }
-                                System.out.println();
-                                
-                                            // if there's additional toppings...
-                                System.out.println("Would you like extra additional toppings? (Y/N)");
+                                    displaySandwichOptions(additionalToppingsArr, "additional topping");
+                                    
+                                    additionalToppings = sandwichMultiOptionSelection(additionalToppingsArr, "additional topping");
+        
+                                    System.out.println();
+                                    for (String topping : additionalToppings) {
+                                        System.out.println(topping);
+                                    }
+                                    System.out.println();
+                                    
+                                    if (!additionalToppings.get(0).equalsIgnoreCase("no toppings")) {
+                                        hasOtherToppings = true;
+                                    }
+                                    
+                                    extraToppings = processExtraToppingInquiry(hasOtherToppings, "additional toppings");
+                                    
+                                    System.out.println("\nExtra additional toppings? " + extraToppings + "\n");
                                 
                                         // ■ Select sauces:
-                                            // display list of available sauces
-                                
-                                
-                                            // ----> for or do-while loop (for multiple toppings)
-                                            // add all sauces to sauces ArrayList
-    
-    
-                                            // if there's sauce(s)...
-                                System.out.println("Would you like extra sauce? (Y/N)");
+                                System.out.println("Select sauces:");
+                                    displaySandwichOptions(saucesArr, "sauce");
+        
+                                    sauces = sandwichMultiOptionSelection(saucesArr, "sauce");
+        
+                                    System.out.println();
+                                    for (String sauce : sauces) {
+                                        System.out.println(sauce);
+                                    }
+                                    System.out.println();
+        
+                                    if (!sauces.get(0).equalsIgnoreCase("no sauces")) {
+                                        hasSauces = true;
+                                    }
+        
+                                    extraSauces = processExtraToppingInquiry(hasSauces, "sauce");
+        
+                                    System.out.println("\nExtra sauces? " + extraSauces + "\n");
                                 
                                         // ■ Select sides:
-                                            // display list of available sides
+                                System.out.println("Select sides:");
+                                    displaySandwichOptions(sidesArr, "side");
     
-                                
-                                            // ----> for or do-while loop (for multiple sides)
-                                            // add all sides to sides ArrayList
-    
-    
-                                            // if there's side(s)...
-                                System.out.println("Would you like extra sides? (Y/N)");
+                                    sides = sandwichMultiOptionSelection(sidesArr, "side");
+        
+                                    System.out.println();
+                                    for (String side : sides) {
+                                        System.out.println(side);
+                                    }
+                                    System.out.println();
+        
+                                    if (!sides.get(0).equalsIgnoreCase("no sides")) {
+                                        hasSides = true;
+                                    }
+        
+                                    extraSides = processExtraToppingInquiry(hasSides, "side");
+                                    System.out.println("\nExtra sides? " + extraSides + "\n");
                                 
                                     // - Would you like the sandwich toasted?
-                                System.out.println("Would you like the sandwich toasted?");
+                                int optionNumChoice = 0;
+                                do {
+                                    System.out.println("Would you like the sandwich toasted? (Type 1 for \"Yes\" / Type 0 for \"No\")");
+                                    optionNumChoice = scanner.nextInt();
+    
+                                    switch (optionNumChoice) {
+                                        case 1:
+                                            isToasted = true;
+                                            break;
+                                        case 0:
+                                            break;
+                                        default:
+                                            System.out.println("ERROR: Must type 1 or 0!\n");
+                                            break;
+                                    }
+                                } while (optionNumChoice != 1 && optionNumChoice != 0);
+                                System.out.println("\nSandwich is toasted? " + isToasted + "\n");
+                                
+                                Sandwich sandwich = new Sandwich();
+                                
                                 
                                 break;
                             case 2:
