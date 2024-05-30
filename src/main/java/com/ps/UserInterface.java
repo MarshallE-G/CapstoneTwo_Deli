@@ -388,17 +388,20 @@ public class UserInterface {
     
     }
     
-    public static void processAddSandwichRequest() {
+    public static Order processAddSandwichRequest(Order order) {
     
+        return order;
     }
     
     
-    public static void processAddDrinkRequest() {
+    public static Order processAddDrinkRequest(Order order) {
     
+        return order;
     }
     
-    public static void processAddChipsRequest() {
+    public static Order processAddChipsRequest(Order order) {
     
+        return order;
     }
     
     public static void displayOptions(String[] optionsArr, String optionsType) {

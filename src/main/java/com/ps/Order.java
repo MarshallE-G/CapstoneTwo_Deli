@@ -9,13 +9,10 @@ import java.util.ArrayList;
 public class Order implements Chargeable{
     private ArrayList<Product> products;
     
-    // Constructor
-    
     public Order() {
         this.products = new ArrayList<>();
     }
     
-    // add(product) : void (adds products to order)
     public void add(Product product) {
         this.products.add(product);
     }
@@ -24,7 +21,6 @@ public class Order implements Chargeable{
         this.products.clear();
     }
     
-    // checkout() : void (calculates order price and displays order details)
     public void checkout() {
         double orderPrice = this.calcPrice();
     
@@ -46,7 +42,6 @@ public class Order implements Chargeable{
     }
     
     
-    // Getters and Setters
     public ArrayList<Product> getProducts() {
         return products;
     }

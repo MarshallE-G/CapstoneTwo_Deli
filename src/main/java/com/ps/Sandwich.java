@@ -279,87 +279,71 @@ public class Sandwich extends Product {
     }
     
     public String listToString(List<String> list) {
-        String listStr = "";
+        String listAsStr = "";
         for (int i = 0; i < list.size(); i++) {
             if (i == 0) {
-                listStr += list.get(i);
+                listAsStr += list.get(i);
             } else {
-                listStr += ", " + list.get(i);
+                listAsStr += ", " + list.get(i);
             }
-            
         }
         
-        return listStr;
+        return listAsStr;
     }
     
-//    public String createStrBasedOnAddOns() {
-//        String additionalToppingsStr = listToString(this.additionalToppings);
-//        String saucesStr = listToString(this.sauces);
-//        String sidesStr = listToString(this.sides);
-//        double price = this.calcPrice();
-//
-//        String selectedAddOns = "Sandwich{" +
-//                "breadType='" + breadType + '\'' +
-//                ", sandwichSize='" + sandwichSize + '\'' +
-//                ", meat='" + meat + '\'' +
-//                ", cheese='" + cheese + '\'' +
-//                ", additionalToppings='" + additionalToppingsStr + '\'' +
-//                ", sauces='" + saucesStr + '\'' +
-//                ", sides='" + sidesStr + '\'';
-//
-//        if (this.extraMeat) {
-//            selectedAddOns += ", extraMeat=" + this.extraMeat;
-//        }
-//        if (this.extraCheese) {
-//            selectedAddOns += ", extraCheese=" + this.extraCheese;
-//        }
-//        if (this.extraToppings) {
-//            selectedAddOns += ", extraToppings=" + this.extraToppings;
-//        }
-//        if (this.extraSauces) {
-//            selectedAddOns += ", extraSauces=" + this.extraSauces;
-//        }
-//        if (this.extraSides) {
-//            selectedAddOns += ", extraSides=" + this.extraSides;
-//        }
-//
-//        selectedAddOns +=
-//                ", toasted=" + isToasted +
-//                "\nprice= $" + price +
-//                '}';
-//
-//        return selectedAddOns;
-//    }
+    public String listToString(List<String> list, String listAsStr) {
+        for (int i = 0; i < list.size(); i++) {
+            listAsStr += "\n\t- " + list.get(i);
+        }
+        
+        return listAsStr;
+    }
     
     @Override
     public String toString() {
-        String additionalToppingsStr = listToString(this.additionalToppings);
-        String saucesStr = listToString(this.sauces);
-        String sidesStr = listToString(this.sides);
         double price = this.calcPrice();
+
+        String selectedAddOns =
+                "Sandwich: " +
+                "\n- Bread: " + breadType +
+                "\n- sandwichSize='" + sandwichSize +
+                "\n- meat='" + meat +
+                "\n- cheese='" + cheese +
+                "\n- Additional toppings:";
+        selectedAddOns += listToString(this.additionalToppings, selectedAddOns);
+    
+        selectedAddOns += "\n- Sauces:";
+        selectedAddOns += listToString(this.sauces, selectedAddOns);
+    
+        selectedAddOns += "\n- Sides:";
+        selectedAddOns += listToString(this.sides, selectedAddOns);
+
+        if (this.extraMeat) {
+            selectedAddOns += "\n- extraMeat=" + this.extraMeat;
+        }
+        if (this.extraCheese) {
+            selectedAddOns += "\n- extraCheese=" + this.extraCheese;
+        }
+        if (this.extraToppings) {
+            selectedAddOns += "\n- extraToppings=" + this.extraToppings;
+        }
+        if (this.extraSauces) {
+            selectedAddOns += "\n- extraSauces=" + this.extraSauces;
+        }
+        if (this.extraSides) {
+            selectedAddOns += "\n- extraSides=" + this.extraSides;
+        }
         
-//        String sandwichStr = this.createStrBasedOnAddOns();
-//        return sandwichStr;
-        return "Sandwich{" +
-                "breadType='" + breadType + '\'' +
-                ", sandwichSize='" + sandwichSize + '\'' +
-                ", meat='" + meat + '\'' +
-                ", cheese='" + cheese + '\'' +
-                ", hasMeat=" + hasMeat +
-                ", hasCheese=" + hasCheese +
-                ", extraMeat=" + extraMeat +
-                ", extraCheese=" + extraCheese +
-                ", additionalToppings= '" + additionalToppingsStr + '\'' +
-                ", hasOtherToppings=" + hasOtherToppings +
-                ", extraToppings=" + extraToppings +
-                ", sauces= '" + saucesStr + '\'' +
-                ", hasSauces=" + hasSauces +
-                ", extraSauces=" + extraSauces +
-                ", sides= '" + sidesStr + '\'' +
-                ", hasSides=" + hasSides +
-                ", extraSides=" + extraSides +
-                ", toasted=" + isToasted +
-                "\nprice= $" + price +
-                '}';
+        if (isToasted) {
+            selectedAddOns += "\n- NOT toasted";
+        } else {
+            selectedAddOns += "\n- Toasted";
+        }
+
+        selectedAddOns +=
+                "\n\nPrice: $" + price +
+                "\n";
+
+        return selectedAddOns;
     }
 }
