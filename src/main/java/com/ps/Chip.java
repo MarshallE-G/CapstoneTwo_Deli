@@ -30,9 +30,9 @@ public class Chip extends Product{
     public String toString() {
         double price = this.calcPrice();
     
-        return "Chip{" +
-                "chipType='" + chipType + '\'' +
-                "\nprice= $" + price +
-                '}';
+        return "Chip:" +
+                "\n- Chip type: " + chipType +
+                "\n\nPrice: $" + price +
+                "\n";
     }
 }
