@@ -485,7 +485,10 @@ public class UserInterface {
         String lastOption = allOptions.get(allOptions.size()-1);
         
         do {
-            if (count > 0 && selectedOptionNum < allOptions.size()+1) {
+            if (
+                    (count > 0)
+                            && (selectedOptionNum > 0)
+                            && (selectedOptionNum < (allOptions.size() + 1))) {
                 displayNewOptions(allOptions, selectedOptionNum);
             }
             
@@ -496,6 +499,7 @@ public class UserInterface {
                 selectedOptionItem = optionSelection(allOptions, selectedOptionNum);
                 
                 System.out.println("\nERROR: Must type a number that corresponds with an option listed! (e.g. 1)\n");
+                wantsMoreOptions = true;
                 continue;
             }
             if (!selectedOptionItem.equalsIgnoreCase(lastOption)) {
@@ -522,7 +526,7 @@ public class UserInterface {
                 break;
             }
             
-            do {
+            if (!selectedOptionItem.equalsIgnoreCase(lastOption)) do {
                 System.out.println("Would you like to add another " + optionType + "? (Type 1 for \"Yes\" / Type 0 for \"No\")");
                 additionalOptionNumChoice = scanner.nextInt();
     
@@ -537,7 +541,10 @@ public class UserInterface {
                         System.out.println("\nERROR: Must type 1 or 0!\n");
                         break;
                 }
-            } while(additionalOptionNumChoice != 1 && additionalOptionNumChoice != 0);
+            } while (additionalOptionNumChoice != 1 && additionalOptionNumChoice != 0);
+            else {
+                break;
+            }
         } while (wantsMoreOptions && count < optionsArr.length-1);
         
         if (count == optionsArr.length-1 && (wantsMoreOptions)) {
@@ -551,23 +558,21 @@ public class UserInterface {
         boolean extraToppingOption = false;
         
         int optionNumChoice = 0;
-        do {
-            if (hasTopping) {
-                System.out.println("Would you like (an) extra " + toppingType + "? (Type 1 for \"Yes\" / Type 0 for \"No\")");
-                optionNumChoice = scanner.nextInt();
-                
-                switch (optionNumChoice) {
-                    case 1:
-                        extraToppingOption = true;
-                        System.out.println("\nYou selected \"Yes\"\n");
-                        break;
-                    case 0:
-                        System.out.println("\nYou selected \"No\"\n");
-                        break;
-                    default:
-                        System.out.println("\nERROR: Must type 1 or 0!\n");
-                        break;
-                }
+        if (hasTopping) do {
+            System.out.println("Would you like (an) extra " + toppingType + "? (Type 1 for \"Yes\" / Type 0 for \"No\")");
+            optionNumChoice = scanner.nextInt();
+    
+            switch (optionNumChoice) {
+                case 1:
+                    extraToppingOption = true;
+                    System.out.println("\nYou selected \"Yes\"\n");
+                    break;
+                case 0:
+                    System.out.println("\nYou selected \"No\"\n");
+                    break;
+                default:
+                    System.out.println("\nERROR: Must type 1 or 0!\n");
+                    break;
             }
         } while (optionNumChoice != 1 && optionNumChoice != 0);
         
