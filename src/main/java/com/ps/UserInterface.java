@@ -494,11 +494,10 @@ public class UserInterface {
     
             selectedOptionItem = optionSelection(allOptions, selectedOptionNum);
     
-            if (
-                    (selectedOptionNum < (allOptions.size() + 1))
-                            && (selectedOptionNum > 0)
-                            && !selectedOptionItem.equalsIgnoreCase(lastOption)
-            ) {
+            if (selectedOptionNum < 0 || selectedOptionNum >= (allOptions.size() + 1)) {
+                System.out.println("\nERROR: Must type a number that corresponds with an option listed! (e.g. 1)\n");
+                continue;
+            } else if (!selectedOptionItem.equalsIgnoreCase(lastOption)) {
                 
                 for (String alreadySelectedItem : selectedOptionItems) {
                     if (selectedOptionItem.equalsIgnoreCase(alreadySelectedItem)) {
@@ -515,14 +514,11 @@ public class UserInterface {
                     System.out.println("\nYou selected: " + selectedOptionItem + "\n");
                     ++count;
                 }
-            } else if (selectedOptionItem.equalsIgnoreCase(lastOption)) {
+            } else {
                 selectedOptionItems.clear();
                 selectedOptionItems.add(selectedOptionItem);
                 System.out.println("\n\tYou selected the \"" + selectedOptionItem + "\" option\n"); // the "no-" option
                 break;
-            } else {
-                System.out.println("\nERROR: Must type a number that corresponds with an option listed! (e.g. 1)\n");
-                continue;
             }
             
             do {
