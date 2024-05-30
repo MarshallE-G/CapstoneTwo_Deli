@@ -20,7 +20,7 @@ public class UserInterface {
     public static void displayHomeMenu() {
         int homeMenuCommand;
         do {
-            System.out.printf("%40s\n", "\u001b[1;3;4mWelcome to DELI-cious!\u001b[22;23;24m");
+            System.out.printf("%40s\u001b[22;23;24m\n", "\u001b[1;3;4mWelcome to DELI-cious!");
             System.out.println("\nHome Menu\n");
         
             System.out.println("1) New Order");
@@ -218,9 +218,9 @@ public class UserInterface {
         
             additionalToppings = multiOptionSelection(additionalToppingsArr, "additional topping");
         
-            System.out.println();
+            System.out.println("Additional toppings selected:");
             for (String topping : additionalToppings) {
-                System.out.println(topping);
+                System.out.println("- " + topping);
             }
             System.out.println();
         
@@ -236,10 +236,10 @@ public class UserInterface {
             displayOptions(saucesArr, "sauce");
         
             sauces = multiOptionSelection(saucesArr, "sauce");
-        
-            System.out.println();
+    
+            System.out.println("Sauce(s) selected:");
             for (String sauce : sauces) {
-                System.out.println(sauce);
+                System.out.println("- " + sauce);
             }
             System.out.println();
         
@@ -255,10 +255,10 @@ public class UserInterface {
             displayOptions(sidesArr, "side");
         
             sides = multiOptionSelection(sidesArr, "side");
-        
-            System.out.println();
+    
+            System.out.println("Side(s) selected:");
             for (String side : sides) {
-                System.out.println(side);
+                System.out.println("- " + side);
             }
             System.out.println();
         
@@ -492,10 +492,11 @@ public class UserInterface {
     
             if (selectedOptionNum < allOptions.size()+1 && !selectedOptionItem.equalsIgnoreCase(lastOption)) {
                 
-                for (String selectedItem : selectedOptionItems) {
-                    if (selectedOptionItem.equalsIgnoreCase(selectedItem)) {
+                for (String alreadySelectedItem : selectedOptionItems) {
+                    if (selectedOptionItem.equalsIgnoreCase(alreadySelectedItem)) {
                         duplicateOptions = true;
-                        System.out.println("\nYou have already added this " + optionType + "!\n");
+                        System.out.println("\nYou selected: " + alreadySelectedItem + "\n");
+                        System.out.println("\nERROR: You have already added this " + optionType + "!\n");
                         break;
                     } else {
                         duplicateOptions = false;
@@ -503,12 +504,13 @@ public class UserInterface {
                 }
                 if (!duplicateOptions) {
                     selectedOptionItems.add(selectedOptionItem);
+                    System.out.println("\nYou selected: " + selectedOptionItem + "\n");
                     ++count;
                 }
             } else if (selectedOptionItem.equalsIgnoreCase(lastOption)) {
                 selectedOptionItems.clear();
                 selectedOptionItems.add(selectedOptionItem);
-                System.out.println("\n\tYou selected the \"" + selectedOptionItem + "\" option\n");
+                System.out.println("\n\tYou selected the \"" + selectedOptionItem + "\" option\n"); // the "no-" option
                 break;
             } else {
                 System.out.println("\nERROR: Must type a number that corresponds with an option listed! (e.g. 1)\n");
