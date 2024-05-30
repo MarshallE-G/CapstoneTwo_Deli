@@ -305,39 +305,39 @@ public class Sandwich extends Product {
 
         String selectedAddOns =
                 "Sandwich: " +
-                "\n- Bread: " + breadType +
-                "\n- sandwichSize='" + sandwichSize +
-                "\n- meat='" + meat +
-                "\n- cheese='" + cheese +
+                "\n- Bread: " + this.breadType +
+                "\n- Size: " + this.sandwichSize +
+                "\n- Meat: " + this.meat +
+                "\n- Cheese: " + this.cheese +
                 "\n- Additional toppings:";
-        selectedAddOns += listToString(this.additionalToppings, selectedAddOns);
+        selectedAddOns = listToString(this.additionalToppings, selectedAddOns);
     
         selectedAddOns += "\n- Sauces:";
-        selectedAddOns += listToString(this.sauces, selectedAddOns);
+        selectedAddOns = listToString(this.sauces, selectedAddOns);
     
         selectedAddOns += "\n- Sides:";
-        selectedAddOns += listToString(this.sides, selectedAddOns);
+        selectedAddOns = listToString(this.sides, selectedAddOns);
 
         if (this.extraMeat) {
-            selectedAddOns += "\n- extraMeat=" + this.extraMeat;
+            selectedAddOns += "\n- Extra Meat!";
         }
         if (this.extraCheese) {
-            selectedAddOns += "\n- extraCheese=" + this.extraCheese;
+            selectedAddOns += "\n- Extra Cheese!";
         }
         if (this.extraToppings) {
-            selectedAddOns += "\n- extraToppings=" + this.extraToppings;
+            selectedAddOns += "\n- Extra Toppings!";
         }
         if (this.extraSauces) {
-            selectedAddOns += "\n- extraSauces=" + this.extraSauces;
+            selectedAddOns += "\n- Extra sauces!";
         }
         if (this.extraSides) {
-            selectedAddOns += "\n- extraSides=" + this.extraSides;
+            selectedAddOns += "\n- Extra sides!";
         }
         
-        if (isToasted) {
-            selectedAddOns += "\n- NOT toasted";
+        if (this.isToasted) {
+            selectedAddOns += "\n- NOT toasted!";
         } else {
-            selectedAddOns += "\n- Toasted";
+            selectedAddOns += "\n- Toasted!";
         }
 
         selectedAddOns +=
