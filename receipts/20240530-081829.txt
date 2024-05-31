@@ -1,0 +1,5 @@
+SANDWICH|white|4"|steak|american|lettuce, cucumbers, peppers, onions, jalapenos|no sauce|au jus, sauce|extra meat|extra cheese|extra topping(s)|extra side(s)|toasted|$8.05
+DRINK|large|mango soda|$3.00
+CHIP|cheddar cheese chips|$1.50
+
+Total Price: $12.55

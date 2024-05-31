@@ -88,10 +88,12 @@ public class UserInterface {
                                     System.out.println("\n~~You have confirmed your order!~~");
                                     FileManager.saveReceipt(order);
                                     order.clear();
+                                    System.out.println("\n\nReturning to Home Menu...\n");
                                     return;
                                 case 0:
                                     System.out.println("\n~~You have canceled the order!~~");
                                     order.clear();
+                                    System.out.println("\n\nReturning to Home Menu...\n");
                                     return;
                                 default:
                                     System.out.println("\nERROR: Not a valid option number. Must type 1 or 0!\n");
@@ -414,7 +416,24 @@ public class UserInterface {
         System.out.println();
     }
     
-    public static void displayNewOptions(ArrayList<String> allOptions, int selectedOptionNum) {
+    public static void displayPreviousOptions(ArrayList<String> allOptions) {
+        String lastOption = allOptions.get(allOptions.size() - 1);
+        
+        for (int i = 0; i < allOptions.size(); i++) {
+            if (!allOptions.get(i).equalsIgnoreCase(lastOption)) {
+                System.out.println("\t" + (i+1) + ") " + allOptions.get(i));
+            } else {
+                System.out.println(
+                        "\t" + (i + 1) + ") " + allOptions.get(i) +
+                                " (Selecting this option will remove all previous add-ons)"
+                );
+            }
+        }
+        
+        System.out.println();
+    }
+    
+    public static void displayUpdatedOptions(ArrayList<String> allOptions, int selectedOptionNum) {
         Iterator<String> iterator = allOptions.iterator();
         String lastOption = allOptions.get(allOptions.size() - 1);
         String selectedOption = allOptions.get(selectedOptionNum-1);
@@ -461,7 +480,7 @@ public class UserInterface {
     public static String optionSelection(ArrayList<String> options, int selectedOptionNum) {
         String optionItem = "";
         
-        for (int i = 1; i < options.size(); i++) {
+        for (int i = 1; i < options.size()+1; i++) {
             if (selectedOptionNum == 1) {
                 optionItem = options.get(0);
             } else if (selectedOptionNum == i+1) {
@@ -477,7 +496,9 @@ public class UserInterface {
         boolean wantsMoreOptions = false;
         boolean duplicateOptions = false;
         int selectedOptionNum = 0;
+//        int previousSelectedOptionNum = 0;
         int additionalOptionNumChoice;
+        int timesItemsAdded = 0;
         int count = 0;
         String selectedOptionItem = "";
     
@@ -486,68 +507,78 @@ public class UserInterface {
         
         do {
             if (
-                    (count > 0)
+                    (timesItemsAdded >= 0)
                             && (selectedOptionNum > 0)
-                            && (selectedOptionNum < (allOptions.size() + 1))) {
-                displayNewOptions(allOptions, selectedOptionNum);
+                            && (selectedOptionNum < (allOptions.size() + 1))
+            ) {
+                System.out.println("Select " + optionType + "s:");
+                displayUpdatedOptions(allOptions, selectedOptionNum);
+            } else if ((count > 0) && (timesItemsAdded >= 0)) {
+                System.out.println("Select " + optionType + "s:");
+                displayPreviousOptions(allOptions);
             }
+            count++;
             
             System.out.println("Enter your selection here:");
             selectedOptionNum = scanner.nextInt();
     
-            if (selectedOptionNum < 1 || selectedOptionNum > (allOptions.size())) {
+            if (selectedOptionNum > 0 && selectedOptionNum < (allOptions.size()+1)) {
                 selectedOptionItem = optionSelection(allOptions, selectedOptionNum);
-                
+    
+                if (!selectedOptionItem.equalsIgnoreCase(lastOption)) {
+        
+                    for (String alreadySelectedItem : selectedOptionItems) {
+                        if (selectedOptionItem.equalsIgnoreCase(alreadySelectedItem)) {
+                            duplicateOptions = true;
+                            System.out.println("\nYou selected: " + alreadySelectedItem + "\n");
+                            System.out.println("\nERROR: You have already added this " + optionType + "!\n");
+                            break;
+                        } else {
+                            duplicateOptions = false;
+                        }
+                    }
+                    if (!duplicateOptions) {
+                        selectedOptionItems.add(selectedOptionItem);
+                        System.out.println("\nYou selected: " + selectedOptionItem + "\n");
+//                        previousSelectedOptionNum = selectedOptionNum;
+                        ++timesItemsAdded;
+                    }
+                } else {
+                    selectedOptionItems.clear();
+                    selectedOptionItems.add(selectedOptionItem);
+                    System.out.println("\n\tYou selected the \"" + selectedOptionItem + "\" option\n"); // the "no-" option
+                    break;
+                }
+            } else {
                 System.out.println("\nERROR: Must type a number that corresponds with an option listed! (e.g. 1)\n");
                 wantsMoreOptions = true;
                 continue;
             }
-            if (!selectedOptionItem.equalsIgnoreCase(lastOption)) {
-                
-                for (String alreadySelectedItem : selectedOptionItems) {
-                    if (selectedOptionItem.equalsIgnoreCase(alreadySelectedItem)) {
-                        duplicateOptions = true;
-                        System.out.println("\nYou selected: " + alreadySelectedItem + "\n");
-                        System.out.println("\nERROR: You have already added this " + optionType + "!\n");
-                        break;
-                    } else {
-                        duplicateOptions = false;
-                    }
-                }
-                if (!duplicateOptions) {
-                    selectedOptionItems.add(selectedOptionItem);
-                    System.out.println("\nYou selected: " + selectedOptionItem + "\n");
-                    ++count;
-                }
-            } else {
-                selectedOptionItems.clear();
-                selectedOptionItems.add(selectedOptionItem);
-                System.out.println("\n\tYou selected the \"" + selectedOptionItem + "\" option\n"); // the "no-" option
-                break;
-            }
             
-            if (!selectedOptionItem.equalsIgnoreCase(lastOption)) do {
+             do {
                 System.out.println("Would you like to add another " + optionType + "? (Type 1 for \"Yes\" / Type 0 for \"No\")");
                 additionalOptionNumChoice = scanner.nextInt();
     
                 switch (additionalOptionNumChoice) {
                     case 1:
                         wantsMoreOptions = true;
+                        System.out.println("\nYou selected \"Yes\"\n");
                         break;
                     case 0:
                         wantsMoreOptions = false;
+                        System.out.println("\nYou selected \"No\"\n");
                         break;
                     default:
                         System.out.println("\nERROR: Must type 1 or 0!\n");
                         break;
                 }
             } while (additionalOptionNumChoice != 1 && additionalOptionNumChoice != 0);
-            else {
-                break;
-            }
-        } while (wantsMoreOptions && count < optionsArr.length-1);
+//            else {
+//                break;
+//            }
+        } while (wantsMoreOptions && timesItemsAdded < optionsArr.length-1);
         
-        if (count == optionsArr.length-1 && (wantsMoreOptions)) {
+        if (timesItemsAdded == optionsArr.length-1 && (wantsMoreOptions)) {
             System.out.println("\n\tYou cannot add another " + optionType + " as there are only " + (optionsArr.length-1) + " available.\n");
         }
         
