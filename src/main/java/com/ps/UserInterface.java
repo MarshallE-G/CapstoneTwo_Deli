@@ -21,7 +21,7 @@ public class UserInterface {
         int homeMenuCommand;
         do {
             System.out.printf("%52s\u001b[22;23;24m\n", "\u001b[1;3;4mWelcome to the DELI-cious Online Deli!");
-            System.out.println("\nHome Menu\n");
+            System.out.println("\n\u001b[32m" + "Home Menu" + "\u001b[0m\n");
         
             System.out.println("1) New Order");
             System.out.println("0) Exit");
@@ -47,7 +47,7 @@ public class UserInterface {
     public static void displayOrderMenu(Order order) {
         int orderMenuCommand;
         do {
-            System.out.println("\nOrder Menu\n");
+            System.out.println("\n\u001b[94m" + "Order Menu" + "\u001b[0m\n");
         
             System.out.println("1) Add Sandwich");
             System.out.println("2) Add Drink");
@@ -192,6 +192,8 @@ public class UserInterface {
             if (!meat.equals("") && !meat.equalsIgnoreCase("no meat")) {
                 System.out.println("\nYou selected: " + meat + "\n");
                 hasMeat = true;
+            } else if (meat.equalsIgnoreCase("no meat")) {
+                System.out.println("\nYou selected: " + meat + "\n");
             } else if (meat.equals("")) {
                 System.out.println("\nERROR: Not a valid option number.\n");
                 return;
@@ -211,6 +213,8 @@ public class UserInterface {
             if (!cheese.equals("") && !cheese.equalsIgnoreCase("no cheese")) {
                 System.out.println("\nYou selected: " + cheese + "\n");
                 hasCheese = true;
+            } else if (cheese.equalsIgnoreCase("no cheese")) {
+                System.out.println("\nYou selected: " + cheese + "\n");
             } else if (cheese.equals("")) {
                 System.out.println("\nERROR: Not a valid option number.\n");
                 return;
