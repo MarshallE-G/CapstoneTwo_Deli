@@ -115,7 +115,7 @@ of turning them into reality. It was very gratifying.
 ![Receipt.PNG](Receipt.PNG)
 
 ***If I was given more time, I would've liked to have worked more on...***
-- I would've liked to have worked more on the aesthetics of the application as well add some more products for 
+- I would've liked to have worked more on the aesthetics of the application as well as add some more products for 
 customers to order.
   - A few ideas I had were:
     - Adding an option to order a salad.
