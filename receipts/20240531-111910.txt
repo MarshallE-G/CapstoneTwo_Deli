@@ -1,0 +1,4 @@
+DRINK|medium|strawberry lemonade|$2.50
+CHIPS|cheddar cheese chips|$1.50
+
+Total Price: $4.00
