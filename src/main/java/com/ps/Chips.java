@@ -4,10 +4,10 @@ package com.ps;
 Represents a bag of "chips"
  */
 
-public class Chip extends Product{
+public class Chips extends Product{
     private String chipType;
     
-    public Chip(String chipType) {
+    public Chips(String chipType) {
         super();
         this.chipType = chipType;
     }

@@ -71,10 +71,10 @@ public class FileManager {
                             product.calcPrice()
                     ));
                     
-                } else if (product instanceof Chip) {
+                } else if (product instanceof Chips) {
                     bufWriter.write(String.format(
-                            "CHIP|%s|$%.2f\n",
-                            ((Chip) product).getChipType(),
+                            "CHIPS|%s|$%.2f\n",
+                            ((Chips) product).getChipType(),
                             product.calcPrice()
                     ));
                 }

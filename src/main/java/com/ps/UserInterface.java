@@ -393,10 +393,10 @@ public class UserInterface {
         
             System.out.println("\nYou selected \"" + chipType + "\"\n");
     
-        Chip chip = new Chip(chipType);
-        System.out.println(chip);
+        Chips chips = new Chips(chipType);
+        System.out.println(chips);
     
-        order.add(chip);
+        order.add(chips);
     }
     
     public static void displayOptions(String[] optionsArr, String optionsType) {

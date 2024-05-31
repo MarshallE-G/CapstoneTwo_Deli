@@ -1,5 +1,5 @@
 SANDWICH|white|12"|no meat|cheddar|no toppings|mayo, thousand islands|au jus, sauce|extra cheese|extra sauce(s)|NOT toasted|$11.65
 DRINK|medium|sprite|$2.50
-CHIP|bbq chips|$1.50
+CHIPS|bbq chips|$1.50
 
 Total Price: $15.65
