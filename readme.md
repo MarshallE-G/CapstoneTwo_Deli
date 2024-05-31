@@ -26,15 +26,14 @@ a property of type `boolean` if the instance of the `Sandwich` class had the pro
 - Something I enjoyed while creating my application was not only seeing my ideas become reality, but also the process 
 of turning them into reality. It was very gratifying.
 
-## Main additional feature
-My main additional feature is the ability to select more than one option when customizing your order.
-
 ------------
 ## Diagram of classes
 
-
 ![CapstoneTwoDiagram.png](CapstoneTwoDiagram.png)
 
+------------
+## Main additional feature
+My main additional feature was the ability to select more than one option when customizing your order.
 
 ## Screenshots of command line
 
