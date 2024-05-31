@@ -496,7 +496,6 @@ public class UserInterface {
         boolean wantsMoreOptions = false;
         boolean duplicateOptions = false;
         int selectedOptionNum = 0;
-//        int previousSelectedOptionNum = 0;
         int additionalOptionNumChoice;
         int timesItemsAdded = 0;
         int count = 0;
@@ -540,7 +539,6 @@ public class UserInterface {
                     if (!duplicateOptions) {
                         selectedOptionItems.add(selectedOptionItem);
                         System.out.println("\nYou selected: " + selectedOptionItem + "\n");
-//                        previousSelectedOptionNum = selectedOptionNum;
                         ++timesItemsAdded;
                     }
                 } else {
@@ -573,9 +571,6 @@ public class UserInterface {
                         break;
                 }
             } while (additionalOptionNumChoice != 1 && additionalOptionNumChoice != 0);
-//            else {
-//                break;
-//            }
         } while (wantsMoreOptions && timesItemsAdded < optionsArr.length-1);
         
         if (timesItemsAdded == optionsArr.length-1 && (wantsMoreOptions)) {

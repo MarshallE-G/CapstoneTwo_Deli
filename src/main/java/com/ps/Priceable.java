@@ -1,5 +1,5 @@
 package com.ps;
 
-public interface Chargeable {
+public interface Priceable {
     public abstract double calcPrice();
 }

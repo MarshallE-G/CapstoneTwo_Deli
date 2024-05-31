@@ -6,7 +6,7 @@ This class represents a single "order" from the deli. It is used to store/contai
 
 import java.util.ArrayList;
 
-public class Order implements Chargeable{
+public class Order implements Priceable {
     private ArrayList<Product> products;
     
     public Order() {
