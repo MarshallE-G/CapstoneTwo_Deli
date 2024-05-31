@@ -29,7 +29,90 @@ of turning them into reality. It was very gratifying.
 ## Screenshots of command line
 
 ------------
+![Part1.PNG](Part1.PNG)
 
+------------
+![Part2.PNG](Part2.PNG)
+
+------------
+![Part3.PNG](Part3.PNG)
+
+------------
+![Part4.PNG](Part4.PNG)
+
+------------
+![Part5.PNG](Part5.PNG)
+
+------------
+![Part6.PNG](Part6.PNG)
+
+------------
+![Part7.PNG](Part7.PNG)
+
+------------
+![Part8.PNG](Part8.PNG)
+
+------------
+![Part9.PNG](Part9.PNG)
+
+------------
+![Part10.PNG](Part10.PNG)
+
+------------
+![Part11.PNG](Part11.PNG)
+
+------------
+![Part12.PNG](Part12.PNG)
+
+------------
+![Part13.PNG](Part13.PNG)
+
+------------
+![Part14.PNG](Part14.PNG)
+
+------------
+![Part15.PNG](Part15.PNG)
+
+------------
+![Part16.PNG](Part16.PNG)
+
+------------
+![Part17.PNG](Part17.PNG)
+
+------------
+![Part18.PNG](Part18.PNG)
+
+------------
+![Part19.PNG](Part19.PNG)
+
+------------
+![Part20.PNG](Part20.PNG)
+
+------------
+![Part21.PNG](Part21.PNG)
+
+------------
+![Part22.PNG](Part22.PNG)
+
+------------
+![Part23.PNG](Part23.PNG)
+
+------------
+![Part24.PNG](Part24.PNG)
+
+------------
+![Part25.PNG](Part25.PNG)
+
+------------
+![Part26.PNG](Part26.PNG)
+
+------------
+![Part27.PNG](Part27.PNG)
+
+## Screenshot of a receipt file
+
+------------
+![Receipt.PNG](Receipt.PNG)
 
 ***If I was given more time, I would've liked to have worked more on...***
 - I would've liked to have worked more on the aesthetics of the application as well add some more products for 
@@ -43,5 +126,4 @@ customers to order.
 ```java
 Iterator<String> iterator = allOptions.iterator();
 ```
-- Can't recall ever using an `Iterator` object before, so it was interesting to research them and implement one 
-in order to iterate through and remove an element at any index inside an `ArrayList`.
+- Can't recall ever using an `Iterator` object before, so it was interesting to research them and implement one.
